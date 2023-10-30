@@ -2,14 +2,36 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
+You Can See The Content Of My first assignment.
+
+
+### a) Choose a video and provide a brief summary in your Quarto document
+
+
+
+### b) Demonstrate and explain three differences between R and Python (e.g. coding style, syntax etc.) Include coding examples using code chunks.
+
+
+
+### c) Import the “na_example” data set from the dslabs package. Your web page should first show the content of “na_example” data set along with its NA values, and then, the total number of NAs. Then replace all NA values in the “na_example” data set with 0, and store it as a new object. After making this change, print the new data frame (the one without NAs) and the total number of NAs in this new data frame to the page. (Include R codes that will produce these outputs)
 
 ```{r}
-1 + 1
+
+library(dslabs)
+data(na_example)
+na_example
+
+print(paste0("total number of NA's in data is ",sum(is.na(na_example))))
+
+
+no_nas <- ifelse(is.na(na_example), 0, na_example)
+
+no_nas
 ```
 
-My first assignment has two parts.
+as you can see, there is not any NA's in the dataset anymore.
 
-## (a)
 
-## (b)
+## d) Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.
+
+I already synced it to github.

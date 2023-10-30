@@ -3,28 +3,43 @@ title: "About Me"
 sidebar: false 
 ---
 
+# My CV
+
+<https://drive.google.com/file/d/1cEcxl46giZzqb-n_hEguQj6ZYRuR2wdY/view?usp=sharing>
+
 # Education
 
 -   B.S., Industrial Engineering, Hacettepe University, Turkey, 2019 - ongoing.
+-   Minor, Business Administration, Hacettepe University, Turkey, 2022 - ongoing.
+-   Erasmus+ Exchange Program, University of Lodz, Poland, 2021-2022
 
 # Work Experience
 
-## Employements
+## Employments
 
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
+1.  PFSA Turkey, Content Editor, 20222-Ongoing
+2.  Superior Shores Resort, Housekeeping,  2023
 
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Turkish Aerospace Industries, Production Planning Engineering Internship, 2022-Ongoing
 
-2.  Firm bbb, position yyy, year yyy
+2.  YapıKredi, Summer Internship Program, 2022
+
+3.  İller Bankası, Financial Management Engineering Internship, 2022
 
 # Projects
 
+1.  Global AI Hub Deep Learning Bootcamp, Classification of city Sounds by using deep learning applications
+
+# Languages
+
+Fluent in Turkish and English, Enthusiastic to learn German and Polish
+
 # Competencies
 
-R, Quarto, Git, Python
+R, Quarto, Git, Python, Excel, Powerpoint, Solidworks, SQL, Minitab, MRP-ERP, Matlab, Premiere Pro
 
-# Hobbies
+# Hobbies and Interests
+
+Professional Volleyball Player, Video Games, Amateur Photography
