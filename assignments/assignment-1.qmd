@@ -4,16 +4,97 @@ title: "Assignment 1"
 
 You Can See The Content Of My first assignment.
 
+# a) Choose a video and provide a brief summary in your Quarto document
 
-### a) Choose a video and provide a brief summary in your Quarto document
+I've chosen the video that mentions a story and some few details about using Excel documents with R. You can find the video in this link: <https://www.rstudio.com/conference/2022/talks/model-migration-excel-to-r/>
 
+In the story, there was a banking client project that needs to be processed (more like needs to be simulated) with 15 million data point and when the man that responsible for this project crashed the main server while trying to run his code. So the main idea of the video was not mixing everything that you know to solve a problem, just try to find the most simple and direct way to get through the solution.
 
+# b) Demonstrate and explain three differences between R and Python ; include coding examples using code chunks.
 
-### b) Demonstrate and explain three differences between R and Python (e.g. coding style, syntax etc.) Include coding examples using code chunks.
+::: {style="color:blue"}
+GREEN PART WAS CREATED BY CHATGPT USING THIS PROMPT: **Demonstrate and explain three differences between R and Python (e.g. coding style, syntax etc.) Include coding examples using code chunks. please make it briefly, I don't need too long writings.**
+:::
 
+::: {style="color:red"}
+Be Careful, codes in this text are only showing the basic template of code structures to analyze syntax and structure easily, they may not be executed without proper data.
+:::
 
+::: {style="color:green"}
+## **1. Syntax:**
 
-### c) Import the “na_example” data set from the dslabs package. Your web page should first show the content of “na_example” data set along with its NA values, and then, the total number of NAs. Then replace all NA values in the “na_example” data set with 0, and store it as a new object. After making this change, print the new data frame (the one without NAs) and the total number of NAs in this new data frame to the page. (Include R codes that will produce these outputs)
+R is known for its concise and expressive syntax, particularly in statistical and data analysis tasks. It uses functions and operators in a way that's familiar to statisticians.
+
+Python, on the other hand, emphasizes readability and a straightforward syntax. It uses indentation for code blocks and has a more general-purpose structure.
+
+### Example in R:
+
+*R syntax for mean calculation*
+
+```{r}
+#data <- c(1, 2, 3, 4, 5)
+#mean_value <- mean(data)
+```
+
+### Example in Python:
+
+*Python syntax for mean calculation*
+
+```{python}
+#data = [1, 2, 3, 4, 5]
+#mean_value = sum(data) / len(data)
+```
+
+## **2. Data Structures:**
+
+R has specific data structures tailored for statistical analysis, such as data frames and factors. It excels in handling and manipulating tabular data.
+
+Python provides a more diverse set of data structures, including lists, dictionaries, and sets. It is more versatile in handling various types of data and is widely used in general-purpose programming.
+
+### Example in R:
+
+*Creating a data frame in R*
+
+```{r}
+#df <- data.frame(ID = c(1, 2, 3), Name = c("Alice", "Bob", "Charlie"))
+```
+
+### Example in Python:
+
+*Creating a dictionary in Python*
+
+```{python}
+#data_dict = {'ID': [1, 2, 3], 'Name': ['Alice', 'Bob', 'Charlie']}
+```
+
+## **3. Community and Libraries:**
+
+R has a strong community focused on statistics and data analysis. It has extensive packages like ggplot2 for data visualization and dplyr for data manipulation.
+
+Python has a larger and more diverse community. Its strength lies in machine learning with libraries like TensorFlow and scikit-learn. Python is also widely used in web development and automation.
+
+### Example in R (using ggplot2):
+
+*Creating a empty scatter plot in R using ggplot2*
+
+```{r}
+#install.packages("ggplot2")
+#library(ggplot2)
+```
+
+### Example in Python (using matplotlib):
+
+*Creating a empty scatter plot in Python using matplotlib*
+
+```{python}
+#!pip install matplotlib
+#import matplotlib.pyplot as plt
+```
+
+These differences showcase the unique strengths and focuses of R and Python in the realm of data analysis and programming.
+:::
+
+# c) Import "na_example" data set. First, show the content of "na_example" and the total number of NA's. Replace all NA values in data set with 0, and store it as a new object. After making this change, print the new data frame and the total number of NA's in this new data frame.
 
 ```{r}
 
@@ -27,11 +108,17 @@ print(paste0("total number of NA's in data is ",sum(is.na(na_example))))
 no_nas <- ifelse(is.na(na_example), 0, na_example)
 
 no_nas
+
+print(paste0("total number of NA's in data is ",sum(is.na(no_nas))))
+
 ```
+
+<div>
 
 as you can see, there is not any NA's in the dataset anymore.
 
+</div>
 
-## d) Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.
+# d) Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.
 
 I already synced it to github.

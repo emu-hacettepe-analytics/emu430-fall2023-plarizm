@@ -53,7 +53,7 @@
     "href": "assignments.html",
     "title": "My Assignments",
     "section": "",
-    "text": "On this page, I showcase the assignment I conducted for the Fall 2023 EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on October 25, 2023\n\n\n\n Back to top"
+    "text": "On this page, I showcase the assignment I conducted for the Fall 2023 EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on October 30, 2023\n\n\n\n Back to top"
   },
   {
     "objectID": "posts.html",
@@ -110,5 +110,26 @@
     "title": "About Me",
     "section": "Employments",
     "text": "Employments\n\nPFSA Turkey, Content Editor, 20222-Ongoing\nSuperior Shores Resort, Housekeeping, 2023"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#data-structures",
+    "href": "assignments/assignment-1.html#data-structures",
+    "title": "Assignment 1",
+    "section": "2. Data Structures:",
+    "text": "2. Data Structures:\nR has specific data structures tailored for statistical analysis, such as data frames and factors. It excels in handling and manipulating tabular data.\nPython provides a more diverse set of data structures, including lists, dictionaries, and sets. It is more versatile in handling various types of data and is widely used in general-purpose programming.\n\nExample in R:\nCreating a data frame in R\n\n#df &lt;- data.frame(ID = c(1, 2, 3), Name = c(\"Alice\", \"Bob\", \"Charlie\"))\n\n\n\nExample in Python:\nCreating a dictionary in Python\n\n#data_dict = {'ID': [1, 2, 3], 'Name': ['Alice', 'Bob', 'Charlie']}"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#community-and-libraries",
+    "href": "assignments/assignment-1.html#community-and-libraries",
+    "title": "Assignment 1",
+    "section": "3. Community and Libraries:",
+    "text": "3. Community and Libraries:\nR has a strong community focused on statistics and data analysis. It has extensive packages like ggplot2 for data visualization and dplyr for data manipulation.\nPython has a larger and more diverse community. Its strength lies in machine learning with libraries like TensorFlow and scikit-learn. Python is also widely used in web development and automation.\n\nExample in R (using ggplot2):\nCreating a empty scatter plot in R using ggplot2\n\n#install.packages(\"ggplot2\")\n#library(ggplot2)\n\n\n\nExample in Python (using matplotlib):\nCreating a empty scatter plot in Python using matplotlib\n\n#!pip install matplotlib\n#import matplotlib.pyplot as plt\n\nThese differences showcase the unique strengths and focuses of R and Python in the realm of data analysis and programming."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#syntax",
+    "href": "assignments/assignment-1.html#syntax",
+    "title": "Assignment 1",
+    "section": "1. Syntax:",
+    "text": "1. Syntax:\nR is known for its concise and expressive syntax, particularly in statistical and data analysis tasks. It uses functions and operators in a way that’s familiar to statisticians.\nPython, on the other hand, emphasizes readability and a straightforward syntax. It uses indentation for code blocks and has a more general-purpose structure.\n\nExample in R:\nR syntax for mean calculation\n\n#data &lt;- c(1, 2, 3, 4, 5)\n#mean_value &lt;- mean(data)\n\n\n\nExample in Python:\nPython syntax for mean calculation\n\n#data = [1, 2, 3, 4, 5]\n#mean_value = sum(data) / len(data)"
   }
 ]
