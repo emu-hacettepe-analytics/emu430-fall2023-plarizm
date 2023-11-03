@@ -46,6 +46,7 @@ format:
     theme: 
       light: pulse 
       dark: superhero
+    background-color: #9BBEC8;
     css: styles.css
 
 

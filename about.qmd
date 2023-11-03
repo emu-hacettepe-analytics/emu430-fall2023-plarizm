@@ -5,7 +5,7 @@ sidebar: false
 
 # My CV
 
-<https://drive.google.com/file/d/1cEcxl46giZzqb-n_hEguQj6ZYRuR2wdY/view?usp=sharing>
+You can download my cv by clicking [here](https://drive.google.com/uc?export=download&id=1cEcxl46giZzqb-n_hEguQj6ZYRuR2wdY)
 
 # Education
 
@@ -18,7 +18,7 @@ sidebar: false
 ## Employments
 
 1.  PFSA Turkey, Content Editor, 20222-Ongoing
-2.  Superior Shores Resort, Housekeeping,  2023
+2.  Superior Shores Resort, Housekeeping, 2023
 
 ## Internships
 
