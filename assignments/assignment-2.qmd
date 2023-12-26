@@ -5,9 +5,9 @@ output:
     encoding: UTF-8
 ---
 
-# 1. Prepare URL's
-
 In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <https://m.imdb.com/search> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.
+
+# 1. Prepare URL's
 
 ## Libraries
 
@@ -417,6 +417,8 @@ Perfectly executed everything, but we have a new data frame with Turkish movies 
 
 ```{r}
 joined_data <- new_data %>% left_join(scrapped_data, by = c("Title", "Year"))
+
+head(joined_data)
 ```
 
 I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.

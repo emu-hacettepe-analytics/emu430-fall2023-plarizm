@@ -259,9 +259,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <a href="https://m.imdb.com/search" class="uri">https://m.imdb.com/search</a> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.</p>
 <section id="prepare-urls" class="level1">
 <h1>1. Prepare URL’s</h1>
-<p>In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <a href="https://m.imdb.com/search" class="uri">https://m.imdb.com/search</a> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.</p>
 <section id="libraries" class="level2">
 <h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
 <p>So let’s start with uploading the libraries.</p>
@@ -769,18 +769,34 @@ The following object is masked from 'package:dplyr':
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <p>Perfectly executed everything, but we have a new data frame with Turkish movies in the top 1000, containing only the <strong>title</strong> and <strong>year</strong>. Now I’ll use my initial <strong><code>scrapped_data</code></strong> frame and an appropriate join operation to fill in the duration, rating, and votes attributes of the <code>new_data</code> frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> new_data <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(scrapped_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Title"</span>, <span class="st">"Year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> new_data <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(scrapped_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Title"</span>, <span class="st">"Year"</span>))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>joined_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       Title Year Duration Rating  Vote
+1   Yedinci Kogustaki Mucize 2019      132    8.2 54121
+2                 Kis Uykusu 2014      196    8.0 54601
+3      Nefes: Vatan Sagolsun 2009      128    8.0 34994
+4  Ayla: The Daughter of War 2017      125    8.3 42975
+5             Babam ve Oglum 2005      108    8.2 91009
+6                Ahlat Agaci 2018      188    8.0 26965
+7    Bir Zamanlar Anadolu'da 2011      157    7.8 49325
+8                     Eskiya 1996      128    8.1 71691
+9                   G.O.R.A. 2004      127    8.0 66012
+10                 Vizontele 2001      110    8.0 38390
+11  Her Sey Çok Güzel Olacak 1998      107    8.1 27108</code></pre>
+</div>
 </div>
 <p>I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>new_descending_by_rating <span class="ot">&lt;-</span> joined_data[<span class="fu">order</span>(joined_data<span class="sc">$</span>Rating, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>new_descending_by_rating <span class="ot">&lt;-</span> joined_data[<span class="fu">order</span>(joined_data<span class="sc">$</span>Rating, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s compare the first 11 elements of the tables, descending order based on ratings.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>first_11_old <span class="ot">&lt;-</span> <span class="fu">head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">11</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>first_11_new <span class="ot">&lt;-</span> new_descending_by_rating</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_old)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>first_11_old <span class="ot">&lt;-</span> <span class="fu">head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">11</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>first_11_new <span class="ot">&lt;-</span> new_descending_by_rating</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_old)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -885,7 +901,7 @@ The following object is masked from 'package:dplyr':
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -990,7 +1006,7 @@ The following object is masked from 'package:dplyr':
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(first_11_old, first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(first_11_old, first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
