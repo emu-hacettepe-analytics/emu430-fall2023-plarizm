@@ -1,7 +1,455 @@
 ---
 title: "Assignment 2"
+output: 
+  html_document:
+    encoding: UTF-8
 ---
 
-# Assignment 2
+# 1. Prepare URL's
 
-This page is under construction.
+In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <https://m.imdb.com/search> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.
+
+## Libraries
+
+So let's start with uploading the libraries.
+
+```{r libraries}
+library(tidyverse) # for everything :)
+library(rvest) # for HTML scraping
+library(stringr) # for string processing
+library(scales) #for formatting
+library(gridExtra) #for showing data
+```
+
+IMDb's Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding "&count=250" to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the "Release Date" filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL's I obtained from the above searches.
+
+## URL's
+
+```{r urls}
+data_urls <- c('https://www.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250','https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250')
+```
+
+Now, we have to reach the information inside URL's. That's how we read them:
+
+```{r read html}
+data_html <- c()
+
+for (x in data_urls) {
+  a <- read_html(x)
+  data_html <- c(data_html, list(a))
+}
+```
+
+# 2. Scrapping Data
+
+## Titles
+
+After that, we are finally starting to see some data! By using `SelectorGadget` , we found proper CSS selector to get title data from HTML code and with using `html_text()` function, we returned just the raw underlying text.
+
+```{r get titles}
+titles_list <- c()
+for (doc in data_html) {
+  title_elements <- html_elements(doc, '.ipc-title__text') %>% html_text()
+  titles_list <- c(titles_list, title_elements)
+}
+head(titles_list)
+
+summary(titles_list)
+```
+
+But, it seems like there are some problems with our data. Firstly, my professor said I need to find 470 movies, but now i have 474 elements in vector we created. Let's fix it first.
+
+```{r make titles tidy}
+titles_list <- titles_list[!grepl("Advanced", titles_list)]
+titles_list <- titles_list[!grepl("Recently", titles_list)]
+head(titles_list)
+```
+
+This cleaned the other titles that website does have excluding movie titles. But we're facing with another problem now. We just want to get the names of the data.
+
+To fix that, I used the function `gsub` with a `for` loop. This function search for matches to argument `pattern` within each element of a character vector and perform replacement.
+
+The pattern **`"^[0-9]+\\.\\s*"`** is a regular expression that matches a sequence at the beginning of a string (**`^`**) consisting of one or more digits (**`[0-9]+`**), followed by a period (**`\\.`**), and then any number of whitespace characters (**`\\s*`**). The replacement string **`""`** indicates that this matched sequence is being replaced with an empty string.
+
+```{r make titles clean}
+titles_cleaned <- c()
+for (x in titles_list) {
+  a <- gsub("^[0-9]+\\.\\s*", "", x)
+  titles_cleaned <- c(titles_cleaned, a)
+}
+head(titles_cleaned)
+```
+
+## Years
+
+Let's head to the other topics we need to get, year and duration. To get them, we need to find the proper CSS selector for it.
+
+```{r get metadata}
+title_metadata_list <- c()
+for (num in data_html) {
+  year_elements <- html_elements(num, '.sc-43986a27-8.jHYIIK.dli-title-metadata-item') %>% html_text()
+  title_metadata_list <- c(title_metadata_list, year_elements)
+}
+```
+
+Unfortunately, in the website we're using, the creators store different data together in one selector. So, we need to create some filters to acquire the data we want.
+
+```{r make years clean}
+years_cleaned <- c()
+for (a in title_metadata_list) {
+  x <- grep("^[0-9]+$", a, value = TRUE)
+  years_cleaned <- c(years_cleaned, x)
+}
+summary(years_cleaned)
+```
+
+It created a list that have characters we want, but to proceed and filter them properly, we need to make them integer.
+
+```{r make years integer}
+years_cleaned <- as.integer(years_cleaned)
+summary(years_cleaned)
+```
+
+## Durations
+
+It is showing the summary data of integer list. That was what we wanted. Now, let's look the metadata again to find how to get durations of the movies.
+
+```{r show metadata}
+head(title_metadata_list, n=10)
+```
+
+Can't you see? This includes durations too! Let's catch them and put in a list.
+
+```{r get durations}
+duration_elements <- c()
+for (a in title_metadata_list) {
+  x <- grep("[hm]", a, value = TRUE)
+  duration_elements <- c(duration_elements, x)
+}
+head(duration_elements)
+```
+
+Oh no, teacher wanted me to make them minutes. I have to write a function for it immediately!
+
+```{r converting function}
+convert_to_minutes <- function(time_str) {
+
+    hours <- as.numeric(str_extract(time_str, "\\d+(?=h)"))
+    minutes <- as.numeric(str_extract(time_str, "\\d+(?=m)"))
+    
+    if (is.na(hours)) { hours <- 0 }
+    if (is.na(minutes)) { minutes <- 0 }
+    
+    total_minutes <- hours * 60 + minutes
+    return(total_minutes)
+}
+```
+
+okay, everything is under control now.
+
+```{r}
+durations_cleaned <- c()
+for (a in duration_elements){
+  x <- convert_to_minutes(a)
+  durations_cleaned <- c(durations_cleaned, x)
+}
+head(durations_cleaned)
+```
+
+## Ratings
+
+Now, we only need to get number of votes that movies got and their ratings according to these votes.
+
+```{r}
+rating_vote_data <- c()
+for (page in data_html) {
+  data <- html_elements(page, '.ipc-rating-star.ipc-rating-star--base.ipc-rating-star--imdb.ratingGroup--imdb-rating') %>% 
+    html_text(trim = TRUE)
+  rating_vote_data <- c(rating_vote_data, data)
+}
+head(rating_vote_data)
+```
+
+And the same issue is appearing in here too. They are storing the ratings and rounded versions of number of votes together. I remember that I can get the exact vote number in a different CSS Selector, so let's just get the rating data from here.
+
+```{r}
+ratings_list <- c()
+for (data in rating_vote_data) {
+  rating_elements <- sub("^([0-9]\\.[0-9]).*$", "\\1", data)
+  ratings_list <- c(ratings_list, rating_elements)
+}
+
+head(ratings_list)
+```
+
+They should be integer.
+
+```{r}
+ratings_cleaned <- as.numeric(ratings_list)
+head(ratings_cleaned)
+```
+
+## Votes
+
+We did it too! Number of votes are only remaining data that we have to get.
+
+```{r}
+vote_list <- c()
+for (num in data_html) {
+  vote <- html_elements(num, '.sc-53c98e73-0.kRnqtn') %>% html_text()
+  vote_list <- c(vote_list, vote)
+}
+head(vote_list)
+```
+
+What a shame! Which website stores data like this?
+
+```{r}
+votes_cleaned <- as.numeric(sapply(vote_list, function(x) {
+  numeric_value <- gsub("Votes|,", "", x)
+}))
+head(votes_cleaned)
+```
+
+## Final Data Frame
+
+I know you also can't wait to see the final version of our data too!
+
+```{r}
+scrapped_data <- data.frame(Title = titles_cleaned,
+                            Year = years_cleaned,
+                            Duration = durations_cleaned,
+                            Rating = ratings_cleaned,
+                            Vote = votes_cleaned)
+
+head(scrapped_data, n=10)
+summary(scrapped_data)
+```
+
+# 3. Exploratory Data Analysis
+
+Okay it was cool enough that the part we scrapped the data, but now we need to head for the Exploratory Data Analysis.
+
+We together will create visualizations to address the following questions, and provide insightful facts about the Turkish movie industry. The questions will guide our analysis.
+
+::: {style="color: Red"}
+## A.
+
+::: {style="color: black"}
+*`Arrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?`*
+:::
+:::
+
+```{r}
+descending_by_rating <- scrapped_data[order(scrapped_data$Rating, decreasing = TRUE),]
+
+top_five <- slice_head(descending_by_rating, n=5)
+top_five
+
+bottom_five <- slice_tail(descending_by_rating, n=5)
+bottom_five
+```
+
+[Actually, I never watched the bottom ones (just as like any person that has self-respect) but I did some of the top ones. Almost all of the best ones the old Turkish movies that named "Yeşilçam"]{style="color: green"}[^1].
+
+[^1]: [Do you know that where "Yeşilçam" name comes from? Yeşilçam is a street located in the Beyoğlu district of Istanbul, close to Taksim. Since the offices of most of the film companies were located on this street in the pre-1980 period, Turkish cinema began to be known as Yeşilçam. It literally means Green Pine in Turkish.]{style="color: green"}
+
+::: {style="color: Red"}
+::: {style="color: Red"}
+## B.
+
+::: {style="color: black"}
+*`Check the ratings of 2-3 of your favorite movies. What are their standings?`*
+:::
+:::
+:::
+
+```{r}
+my_favorites <- filter(scrapped_data, Title %in% c("G.O.R.A.","Ölümlü Dünya 2","Organize Isler"))
+
+my_favorites %>% select(Title, Rating)
+```
+
+[These are my favorites.]{style="color: green"}
+
+::: {style="color: Red"}
+::: {style="color: Red"}
+## C.
+
+::: {style="color: black"}
+*`Considering that audience rating is a crucial indicator of movie quality, what can you infer about the average ratings of Turkish movies over the years? Calculate yearly rating averages and plot them as a scatter plot. Hint: Use functions like group_by(), summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution, plot box plots of ratings over the years (each year having a box plot showing statistics about the ratings of movies in that year). What insights do you gather from the box plot?`*
+:::
+:::
+:::
+
+```{r}
+yearly_average <- scrapped_data %>% group_by(Year) %>% summarise(AverageRating = mean(Rating))
+
+# Number of movies over the years
+movies_per_year <- scrapped_data %>% group_by(Year) %>% summarise(NumberOfMovies = n())
+
+ggplot(movies_per_year, aes(x = Year, y = NumberOfMovies)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Number of Turkish Movies Released Each Year",
+       x = "Year",
+       y = "Number of Movies")
+
+# Yearly rating averages
+ggplot(yearly_average, aes(x = Year, y = AverageRating)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Yearly Average Ratings of Turkish Movies",
+       x = "Year",
+       y = "Average Rating")
+
+# box plots of ratings over the years
+ggplot(scrapped_data, aes(x = as.factor(Year), y = Rating)) +
+  geom_boxplot() +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  labs(title = "Box Plot of Movie Ratings Over the Years",
+       x = "Year",
+       y = "Rating")
+```
+
+[Before looking at the box plot data, we may say that average ratings have swiftly decreased over the years, but in the box plot, we can see the medians have not changed that much, but poor-quality movies are magnificently increased.]{style="color: green"}
+
+::: {style="color: Red"}
+::: {style="color: Red"}
+## D.
+
+::: {style="color: black"}
+*`Do you believe there is a relationship between the number of votes a movie received`* *`and its rating? Investigate the correlation between Votes and Ratings.`*
+:::
+:::
+:::
+
+```{r}
+ggplot(scrapped_data, aes(x = Vote, y = Rating)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "red") +
+  scale_x_log10(labels = scales::label_number_auto()) +
+  theme_minimal() +
+  labs(title = "Correlation Between Votes and Ratings",
+       x = "Number of Votes",
+       y = "Rating")
+```
+
+[Thanks to the regression line, we can see that there is a small correlation between number of votes and ratings.]{style="color: green"}
+
+::: {style="color: Red"}
+::: {style="color: Red"}
+## E.
+
+::: {style="color: black"}
+*`Do you believe there is a relationship between a movie’s duration and its rating?`* *`Investigate the correlation between Duration and Ratings.`*
+:::
+:::
+:::
+
+```{r}
+ggplot(scrapped_data, aes(x = Duration, y = Rating)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "blue") +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(title = "Relationship Between Movie Duration and Rating",
+       x = "Duration (minutes)",
+       y = "Rating")
+```
+
+[As we can guess, there is no correlation between duration and rating.]{style="color: green"}
+
+# 4. Turkish movies that in top 1000 on IMDb
+
+Now, I used IMDb's Advanced Title Search interface with The Title Type set to "Movie" only, the Country set to "Turkey" with the option "Search country of origin only" active, and the Awards & Recognation set to "IMDB Top 1000". I found a total of 11 movies.
+
+```{r}
+new_data_url <- "https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR"
+
+new_data_html <- read_html(new_data_url)
+```
+
+This new data will be used to get the information of my new table.
+
+## Titles
+
+I did the same process I've done for first scrape.
+
+```{r}
+new_titles <- new_data_html %>% html_elements(".ipc-title__text") %>% html_text()
+new_titles <- new_titles[!grepl("Advanced", new_titles)]
+new_titles <- new_titles[!grepl("Recently", new_titles)]
+
+new_titles_cleaned <- c()
+for (x in new_titles) {
+  a <- gsub("^[0-9]+\\.\\s*", "", x)
+  new_titles_cleaned <- c(new_titles_cleaned, a)
+}
+```
+
+## Years
+
+I did the same process again that I've done for first scrape.
+
+```{r}
+new_metadata_list <- new_data_html %>% html_elements(".sc-43986a27-8.jHYIIK.dli-title-metadata-item") %>% html_text()
+
+new_years_cleaned <- c()
+for (a in new_metadata_list) {
+  x <- grep("^[0-9]+$", a, value = TRUE)
+  new_years_cleaned <- c(new_years_cleaned, x)
+}
+
+new_years_cleaned <- as.integer(new_years_cleaned)
+```
+
+## New Data Frame
+
+```{r}
+new_data <- data.frame(Title = new_titles_cleaned, Year = new_years_cleaned)
+```
+
+## Analysis
+
+Perfectly executed everything, but we have a new data frame with Turkish movies in the top 1000, containing only the **title** and **year**. Now I'll use my initial **`scrapped_data`** frame and an appropriate join operation to fill in the duration, rating, and votes attributes of the `new_data` frame.
+
+```{r}
+joined_data <- new_data %>% left_join(scrapped_data, by = c("Title", "Year"))
+```
+
+I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.
+
+```{r}
+new_descending_by_rating <- joined_data[order(joined_data$Rating, decreasing = TRUE),]
+```
+
+Let's compare the first 11 elements of the tables, descending order based on ratings.
+
+```{r}
+first_11_old <- head(descending_by_rating, n=11)
+first_11_new <- new_descending_by_rating
+
+knitr::kable(first_11_old)
+knitr::kable(first_11_new)
+
+
+identical(first_11_old, first_11_new)
+```
+
+As we see, they're not identical. This implies that IMDb doesn't use only the rankings. Firstly, of course they look at their rankings but it is not the only criteria. They have to pass the minimum number of ratings threshold. And some different criteria exist for this algorithm. For example, they shared their algorithm to create Top 250 list.
+
+> [*The following formula is used to calculate the Top Rated 250 titles. This formula provides a true 'Bayesian estimate', which takes into account the number of votes each title has received, minimum votes required to be on the list, and the mean vote for all titles:*]{style="background-color: #f3ce13; color:black"}
+>
+> [*weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C*]{style="background-color: #f3ce13; color:black"}
+>
+> [*Where:*]{style="background-color: #f3ce13; color:black"}
+>
+> [*R = average for the movie (mean) = (rating)*]{style="background-color: #f3ce13; color:black"}
+>
+> [*v = number of votes for the movie = (votes)*]{style="background-color: #f3ce13; color:black"}
+>
+> [*m = minimum votes required to be listed in the Top Rated 250 list (currently 25,000)*]{style="background-color: #f3ce13; color:black"}
+>
+> [*C = the mean vote across the whole report* ]{style="background-color: #f3ce13; color:black"}

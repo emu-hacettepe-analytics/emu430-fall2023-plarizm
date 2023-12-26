@@ -6,7 +6,7 @@ You can see the content of my first assignment here.
 
 # **Part A**
 
-## Choose a video and provide a brief summary in your Quarto document
+**Choose a video and provide a brief summary in your Quarto document**
 
 I've chosen the video that mentions a story and some few details about using Excel documents with R. You can find the video in this link: <https://www.rstudio.com/conference/2022/talks/model-migration-excel-to-r/>
 
@@ -14,7 +14,7 @@ In the story, there was a banking client project that needs to be processed (mor
 
 # **Part B**
 
-## Demonstrate and explain three differences between R and Python ; include coding examples using code chunks.
+**Demonstrate and explain three differences between R and Python ; include coding examples using code chunks.**
 
 ::: {style="color:blue"}
 GREEN PART WAS CREATED BY CHATGPT USING THIS PROMPT: **Demonstrate and explain three differences between R and Python (e.g. coding style, syntax etc.) Include coding examples using code chunks. please make it briefly, I don't need too long writings.**
@@ -100,7 +100,7 @@ These differences showcase the unique strengths and focuses of R and Python in t
 
 # **Part C**
 
-## Import "na_example" data set. First, show the content of "na_example" and the total number of NA's. Replace all NA values in data set with 0, and store it as a new object. After making this change, print the new data frame and the total number of NA's in this new data frame.
+**Import "na_example" data set. First, show the content of "na_example" and the total number of NA's. Replace all NA values in data set with 0, and store it as a new object. After making this change, print the new data frame and the total number of NA's in this new data frame.**
 
 ```{r}
 
@@ -127,6 +127,6 @@ as you can see, there is not any NA's in the dataset anymore.
 
 # **Part D**
 
-## Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.
+**Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.**
 
 I already synced it to github.

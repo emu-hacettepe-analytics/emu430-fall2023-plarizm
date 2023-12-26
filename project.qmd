@@ -1,12 +1,12 @@
 ---
 title: "Our Course Project"
-sidebar: false 
+sidebar: false
 ---
 
-I'm honored to be a member of  \[group name\] project team.
+I'm honored to be a member of **`alti_ustu_data`** team.
 
-Below, you'll find a brief summary of our project. To access a detailed project description, please go to [https://\[your-project-url\]](#0){.uri}.
+Below, you'll find a brief summary of our project. To access a detailed project description, please go to [Our Project](https://emu-hacettepe-analytics.github.io/emu430-fall2023-team-alti_ustu_data/){.uri}.
 
 **Summary**
 
-\[provide a biref summary of your project\]
+As you know, air pollution has increased significantly since the Industrial Revolution (1760). There are many known and unknown reasons for this. We have done this study in order to examine and analyse these reasons. We have chosen to observe \"Average of\"PM10 values of the stations\" and \"Forest area per km\^2\". We aim to determine the relationship between air pollution and forestation rate by using these data. To accomplish this, first we are going to monitorize both data by using plots then we are going to do some correlation analysis. After that, we will find outliners and try to figure out the reasons of them.

@@ -4,7 +4,7 @@
     "href": "project.html",
     "title": "Our Course Project",
     "section": "",
-    "text": "I’m honored to be a member of [group name] project team.\nBelow, you’ll find a brief summary of our project. To access a detailed project description, please go to https://[your-project-url].\nSummary\n[provide a biref summary of your project]\n\n\n\n Back to top"
+    "text": "I’m honored to be a member of alti_ustu_data team.\nBelow, you’ll find a brief summary of our project. To access a detailed project description, please go to Our Project.\nSummary\nAs you know, air pollution has increased significantly since the Industrial Revolution (1760). There are many known and unknown reasons for this. We have done this study in order to examine and analyse these reasons. We have chosen to observe \"Average of\"PM10 values of the stations\" and \"Forest area per km^2\". We aim to determine the relationship between air pollution and forestation rate by using these data. To accomplish this, first we are going to monitorize both data by using plots then we are going to do some correlation analysis. After that, we will find outliners and try to figure out the reasons of them.\n\n\n\n Back to top"
   },
   {
     "objectID": "index.html",
@@ -18,7 +18,7 @@
     "href": "assignments/assignment-2.html",
     "title": "Assignment 2",
     "section": "",
-    "text": "Assignment 2\nThis page is under construction.\n\n\n\n\n Back to top"
+    "text": "In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on https://m.imdb.com/search that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.\n\n\nSo let’s start with uploading the libraries.\n\nlibrary(tidyverse) # for everything :)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(rvest) # for HTML scraping\n\n\nAttaching package: 'rvest'\n\nThe following object is masked from 'package:readr':\n\n    guess_encoding\n\nlibrary(stringr) # for string processing\nlibrary(scales) #for formatting\n\n\nAttaching package: 'scales'\n\nThe following object is masked from 'package:purrr':\n\n    discard\n\nThe following object is masked from 'package:readr':\n\n    col_factor\n\nlibrary(gridExtra) #for showing data\n\n\nAttaching package: 'gridExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    combine\n\n\nIMDb’s Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding “&count=250” to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the “Release Date” filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL’s I obtained from the above searches.\n\n\n\n\ndata_urls &lt;- c('https://www.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250','https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250')\n\nNow, we have to reach the information inside URL’s. That’s how we read them:\n\ndata_html &lt;- c()\n\nfor (x in data_urls) {\n  a &lt;- read_html(x)\n  data_html &lt;- c(data_html, list(a))\n}"
   },
   {
     "objectID": "about.html",
@@ -159,5 +159,159 @@
     "title": "Assignment 1",
     "section": "Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.",
     "text": "Render your Quarto website locally and commit your changes to GitHub. Verify that your updates are visible on your web page.\nI already synced it to github."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#footnotes",
+    "href": "assignments/assignment-2.html#footnotes",
+    "title": "Assignment 2",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nDo you know that where “Yeşilçam” name comes from? Yeşilçam is a street located in the Beyoğlu district of Istanbul, close to Taksim. Since the offices of most of the film companies were located on this street in the pre-1980 period, Turkish cinema began to be known as Yeşilçam. It literally means Green Pine in Turkish.↩︎"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#libraries",
+    "href": "assignments/assignment-2.html#libraries",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "So let’s start with uploading the libraries.\n\nlibrary(tidyverse) # for everything :)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(rvest) # for HTML scraping\n\n\nAttaching package: 'rvest'\n\nThe following object is masked from 'package:readr':\n\n    guess_encoding\n\nlibrary(stringr) # for string processing\nlibrary(scales) #for formatting\n\n\nAttaching package: 'scales'\n\nThe following object is masked from 'package:purrr':\n\n    discard\n\nThe following object is masked from 'package:readr':\n\n    col_factor\n\nlibrary(gridExtra) #for showing data\n\n\nAttaching package: 'gridExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    combine\n\n\nIMDb’s Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding “&count=250” to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the “Release Date” filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL’s I obtained from the above searches."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#urls",
+    "href": "assignments/assignment-2.html#urls",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "data_urls &lt;- c('https://www.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250','https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&sort=release_date,desc&num_votes=2500,&country_of_origin=TR&count=250')\n\nNow, we have to reach the information inside URL’s. That’s how we read them:\n\ndata_html &lt;- c()\n\nfor (x in data_urls) {\n  a &lt;- read_html(x)\n  data_html &lt;- c(data_html, list(a))\n}"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#titles",
+    "href": "assignments/assignment-2.html#titles",
+    "title": "Assignment 2",
+    "section": "Titles",
+    "text": "Titles\nAfter that, we are finally starting to see some data! By using SelectorGadget , we found proper CSS selector to get title data from HTML code and with using html_text() function, we returned just the raw underlying text.\n\ntitles_list &lt;- c()\nfor (doc in data_html) {\n  title_elements &lt;- html_elements(doc, '.ipc-title__text') %&gt;% html_text()\n  titles_list &lt;- c(titles_list, title_elements)\n}\nhead(titles_list)\n\n[1] \"Advanced search\"    \"1. Yahsi Bati\"      \"2. D@bbe 2\"        \n[4] \"3. Baska Dilde Ask\" \"4. Vavien\"          \"5. Neseli Hayat\"   \n\nsummary(titles_list)\n\n   Length     Class      Mode \n      474 character character \n\n\nBut, it seems like there are some problems with our data. Firstly, my professor said I need to find 470 movies, but now i have 474 elements in vector we created. Let’s fix it first.\n\ntitles_list &lt;- titles_list[!grepl(\"Advanced\", titles_list)]\ntitles_list &lt;- titles_list[!grepl(\"Recently\", titles_list)]\nhead(titles_list)\n\n[1] \"1. Yahsi Bati\"      \"2. D@bbe 2\"         \"3. Baska Dilde Ask\"\n[4] \"4. Vavien\"          \"5. Neseli Hayat\"    \"6. 7 Kocali Hürmüz\"\n\n\nThis cleaned the other titles that website does have excluding movie titles. But we’re facing with another problem now. We just want to get the names of the data.\nTo fix that, I used the function gsub with a for loop. This function search for matches to argument pattern within each element of a character vector and perform replacement.\nThe pattern \"^[0-9]+\\\\.\\\\s*\" is a regular expression that matches a sequence at the beginning of a string (^) consisting of one or more digits ([0-9]+), followed by a period (\\\\.), and then any number of whitespace characters (\\\\s*). The replacement string \"\" indicates that this matched sequence is being replaced with an empty string.\n\ntitles_cleaned &lt;- c()\nfor (x in titles_list) {\n  a &lt;- gsub(\"^[0-9]+\\\\.\\\\s*\", \"\", x)\n  titles_cleaned &lt;- c(titles_cleaned, a)\n}\nhead(titles_cleaned)\n\n[1] \"Yahsi Bati\"      \"D@bbe 2\"         \"Baska Dilde Ask\" \"Vavien\"         \n[5] \"Neseli Hayat\"    \"7 Kocali Hürmüz\""
+  },
+  {
+    "objectID": "assignments/assignment-2.html#years",
+    "href": "assignments/assignment-2.html#years",
+    "title": "Assignment 2",
+    "section": "Years",
+    "text": "Years\nLet’s head to the other topics we need to get, year and duration. To get them, we need to find the proper CSS selector for it.\n\ntitle_metadata_list &lt;- c()\nfor (num in data_html) {\n  year_elements &lt;- html_elements(num, '.sc-43986a27-8.jHYIIK.dli-title-metadata-item') %&gt;% html_text()\n  title_metadata_list &lt;- c(title_metadata_list, year_elements)\n}\n\nUnfortunately, in the website we’re using, the creators store different data together in one selector. So, we need to create some filters to acquire the data we want.\n\nyears_cleaned &lt;- c()\nfor (a in title_metadata_list) {\n  x &lt;- grep(\"^[0-9]+$\", a, value = TRUE)\n  years_cleaned &lt;- c(years_cleaned, x)\n}\nsummary(years_cleaned)\n\n   Length     Class      Mode \n      470 character character \n\n\nIt created a list that have characters we want, but to proceed and filter them properly, we need to make them integer.\n\nyears_cleaned &lt;- as.integer(years_cleaned)\nsummary(years_cleaned)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   1963    1999    2010    2005    2016    2023"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#durations",
+    "href": "assignments/assignment-2.html#durations",
+    "title": "Assignment 2",
+    "section": "Durations",
+    "text": "Durations\nIt is showing the summary data of integer list. That was what we wanted. Now, let’s look the metadata again to find how to get durations of the movies.\n\nhead(title_metadata_list, n=10)\n\n [1] \"2009\"   \"1h 52m\" \"7+\"     \"2009\"   \"1h 25m\" \"2009\"   \"1h 38m\" \"G\"     \n [9] \"2009\"   \"1h 40m\"\n\n\nCan’t you see? This includes durations too! Let’s catch them and put in a list.\n\nduration_elements &lt;- c()\nfor (a in title_metadata_list) {\n  x &lt;- grep(\"[hm]\", a, value = TRUE)\n  duration_elements &lt;- c(duration_elements, x)\n}\nhead(duration_elements)\n\n[1] \"1h 52m\" \"1h 25m\" \"1h 38m\" \"1h 40m\" \"1h 40m\" \"2h 2m\" \n\n\nOh no, teacher wanted me to make them minutes. I have to write a function for it immediately!\n\nconvert_to_minutes &lt;- function(time_str) {\n\n    hours &lt;- as.numeric(str_extract(time_str, \"\\\\d+(?=h)\"))\n    minutes &lt;- as.numeric(str_extract(time_str, \"\\\\d+(?=m)\"))\n    \n    if (is.na(hours)) { hours &lt;- 0 }\n    if (is.na(minutes)) { minutes &lt;- 0 }\n    \n    total_minutes &lt;- hours * 60 + minutes\n    return(total_minutes)\n}\n\nokay, everything is under control now.\n\ndurations_cleaned &lt;- c()\nfor (a in duration_elements){\n  x &lt;- convert_to_minutes(a)\n  durations_cleaned &lt;- c(durations_cleaned, x)\n}\nhead(durations_cleaned)\n\n[1] 112  85  98 100 100 122"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#ratings",
+    "href": "assignments/assignment-2.html#ratings",
+    "title": "Assignment 2",
+    "section": "Ratings",
+    "text": "Ratings\nNow, we only need to get number of votes that movies got and their ratings according to these votes.\n\nrating_vote_data &lt;- c()\nfor (page in data_html) {\n  data &lt;- html_elements(page, '.ipc-rating-star.ipc-rating-star--base.ipc-rating-star--imdb.ratingGroup--imdb-rating') %&gt;% \n    html_text(trim = TRUE)\n  rating_vote_data &lt;- c(rating_vote_data, data)\n}\nhead(rating_vote_data)\n\n[1] \"7.4 (38K)\"  \"3.0 (2.7K)\" \"7.3 (7.1K)\" \"7.5 (13K)\"  \"6.1 (7.5K)\"\n[6] \"6.3 (5.8K)\"\n\n\nAnd the same issue is appearing in here too. They are storing the ratings and rounded versions of number of votes together. I remember that I can get the exact vote number in a different CSS Selector, so let’s just get the rating data from here.\n\nratings_list &lt;- c()\nfor (data in rating_vote_data) {\n  rating_elements &lt;- sub(\"^([0-9]\\\\.[0-9]).*$\", \"\\\\1\", data)\n  ratings_list &lt;- c(ratings_list, rating_elements)\n}\n\nhead(ratings_list)\n\n[1] \"7.4\" \"3.0\" \"7.3\" \"7.5\" \"6.1\" \"6.3\"\n\n\nThey should be integer.\n\nratings_cleaned &lt;- as.numeric(ratings_list)\nhead(ratings_cleaned)\n\n[1] 7.4 3.0 7.3 7.5 6.1 6.3"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#votes",
+    "href": "assignments/assignment-2.html#votes",
+    "title": "Assignment 2",
+    "section": "Votes",
+    "text": "Votes\nWe did it too! Number of votes are only remaining data that we have to get.\n\nvote_list &lt;- c()\nfor (num in data_html) {\n  vote &lt;- html_elements(num, '.sc-53c98e73-0.kRnqtn') %&gt;% html_text()\n  vote_list &lt;- c(vote_list, vote)\n}\nhead(vote_list)\n\n[1] \"Votes37,767\" \"Votes2,662\"  \"Votes7,087\"  \"Votes13,496\" \"Votes7,522\" \n[6] \"Votes5,817\" \n\n\nWhat a shame! Which website stores data like this?\n\nvotes_cleaned &lt;- as.numeric(sapply(vote_list, function(x) {\n  numeric_value &lt;- gsub(\"Votes|,\", \"\", x)\n}))\nhead(votes_cleaned)\n\n[1] 37767  2662  7087 13496  7522  5817"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#final-dataframe",
+    "href": "assignments/assignment-2.html#final-dataframe",
+    "title": "Assignment 2",
+    "section": "Final DataFrame",
+    "text": "Final DataFrame\nI know you also can’t wait to see the final version of our data too!\n\nscrapped_data &lt;- data.frame(Title = titles_cleaned,\n                            Year = years_cleaned,\n                            Duration = durations_cleaned,\n                            Rating = ratings_cleaned,\n                            Vote = votes_cleaned)\n\nhead(scrapped_data, n=10)\n\n                    Title Year Duration Rating  Vote\n1              Yahsi Bati 2009      112    7.4 37767\n2                 D@bbe 2 2009       85    3.0  2662\n3         Baska Dilde Ask 2009       98    7.3  7087\n4                  Vavien 2009      100    7.5 13496\n5            Neseli Hayat 2009      100    6.1  7522\n6         7 Kocali Hürmüz 2009      122    6.3  5817\n7  Kurtlar Vadisi: Gladio 2009       97    6.2  5288\n8               Kiskanmak 2009       96    6.5  3454\n9               Kolpaçino 2009       98    6.5 13648\n10         Kanal-i-zasyon 2009      113    5.0  3907\n\nsummary(scrapped_data)\n\n    Title                Year         Duration          Rating     \n Length:470         Min.   :1963   Min.   : 48.00   Min.   :1.000  \n Class :character   1st Qu.:1999   1st Qu.: 92.25   1st Qu.:5.800  \n Mode  :character   Median :2010   Median :104.00   Median :6.750  \n                    Mean   :2005   Mean   :104.34   Mean   :6.375  \n                    3rd Qu.:2016   3rd Qu.:114.00   3rd Qu.:7.400  \n                    Max.   :2023   Max.   :197.00   Max.   :9.200  \n      Vote       \n Min.   :  2510  \n 1st Qu.:  3526  \n Median :  5203  \n Mean   :  9508  \n 3rd Qu.:  9997  \n Max.   :109851"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#a",
+    "href": "assignments/assignment-2.html#a",
+    "title": "Assignment 2",
+    "section": "A)",
+    "text": "A)\n\nArrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#b",
+    "href": "assignments/assignment-2.html#b",
+    "title": "Assignment 2",
+    "section": "B)",
+    "text": "B)\n\nCheck the ratings of 2-3 of your favorite movies. What are their standings?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#a.",
+    "href": "assignments/assignment-2.html#a.",
+    "title": "Assignment 2",
+    "section": "A.",
+    "text": "A.\n\nArrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#b.",
+    "href": "assignments/assignment-2.html#b.",
+    "title": "Assignment 2",
+    "section": "B.",
+    "text": "B.\n\nCheck the ratings of 2-3 of your favorite movies. What are their standings?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#c.",
+    "href": "assignments/assignment-2.html#c.",
+    "title": "Assignment 2",
+    "section": "C.",
+    "text": "C.\n\nConsidering that audience rating is a crucial indicator of movie quality, what can you infer about the average ratings of Turkish movies over the years? Calculate yearly rating averages and plot them as a scatter plot. Hint: Use functions like group_by(), summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution, plot box plots of ratings over the years (each year having a box plot showing statistics about the ratings of movies in that year). What insights do you gather from the box plot?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#d.",
+    "href": "assignments/assignment-2.html#d.",
+    "title": "Assignment 2",
+    "section": "D.",
+    "text": "D.\n\nDo you believe there is a relationship between the number of votes a movie received and its rating? Investigate the correlation between Votes and Ratings."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#e.",
+    "href": "assignments/assignment-2.html#e.",
+    "title": "Assignment 2",
+    "section": "E.",
+    "text": "E.\n\nDo you believe there is a relationship between a movie’s duration and its rating? Investigate the correlation between Duration and Ratings."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#titles-1",
+    "href": "assignments/assignment-2.html#titles-1",
+    "title": "Assignment 2",
+    "section": "Titles",
+    "text": "Titles\nI did the same process I’ve done for first scrape.\n\nnew_titles &lt;- new_data_html %&gt;% html_elements(\".ipc-title__text\") %&gt;% html_text()\nnew_titles &lt;- new_titles[!grepl(\"Advanced\", new_titles)]\nnew_titles &lt;- new_titles[!grepl(\"Recently\", new_titles)]\n\nnew_titles_cleaned &lt;- c()\nfor (x in new_titles) {\n  a &lt;- gsub(\"^[0-9]+\\\\.\\\\s*\", \"\", x)\n  new_titles_cleaned &lt;- c(new_titles_cleaned, a)\n}"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#years-1",
+    "href": "assignments/assignment-2.html#years-1",
+    "title": "Assignment 2",
+    "section": "Years",
+    "text": "Years\nI did the same process again that I’ve done for first scrape.\n\nnew_metadata_list &lt;- new_data_html %&gt;% html_elements(\".sc-43986a27-8.jHYIIK.dli-title-metadata-item\") %&gt;% html_text()\n\nnew_years_cleaned &lt;- c()\nfor (a in new_metadata_list) {\n  x &lt;- grep(\"^[0-9]+$\", a, value = TRUE)\n  new_years_cleaned &lt;- c(new_years_cleaned, x)\n}\n\nnew_years_cleaned &lt;- as.integer(new_years_cleaned)"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#new-dataframe",
+    "href": "assignments/assignment-2.html#new-dataframe",
+    "title": "Assignment 2",
+    "section": "New dataframe",
+    "text": "New dataframe\n\nnew_data &lt;- data.frame(Title = new_titles_cleaned, Year = new_years_cleaned)"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#analysis",
+    "href": "assignments/assignment-2.html#analysis",
+    "title": "Assignment 2",
+    "section": "Analysis",
+    "text": "Analysis\nPerfectly executed everything, but we have a new data frame with Turkish movies in the top 1000, containing only the title and year. Now I’ll use my initial scrapped_data frame and an appropriate join operation to fill in the duration, rating, and votes attributes of the new_data frame.\n\njoined_data &lt;- new_data %&gt;% left_join(scrapped_data, by = c(\"Title\", \"Year\"))\n\nI need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.\n\nnew_descending_by_rating &lt;- joined_data[order(joined_data$Rating, decreasing = TRUE),]\n\nLet’s compare the first 11 elements of the tables, descending order based on ratings.\n\nfirst_11_old &lt;- head(descending_by_rating, n=11)\nfirst_11_new &lt;- new_descending_by_rating\n\nknitr::kable(first_11_old)\n\n\n\n\n\nTitle\nYear\nDuration\nRating\nVote\n\n\n\n\n209\nHababam Sinifi\n1975\n87\n9.2\n42503\n\n\n424\nCM101MMXI Fundamentals\n2013\n139\n9.1\n46992\n\n\n198\nTosun Pasa\n1976\n90\n8.9\n24323\n\n\n205\nHababam Sinifi Sinifta Kaldi\n1975\n95\n8.9\n24364\n\n\n204\nSüt Kardesler\n1976\n80\n8.8\n20881\n\n\n141\nZügürt Aga\n1985\n101\n8.7\n16130\n\n\n187\nKibar Feyzo\n1978\n83\n8.7\n17123\n\n\n190\nNeseli Günler\n1978\n95\n8.7\n11802\n\n\n194\nSaban Oglu Saban\n1977\n90\n8.7\n18533\n\n\n201\nHababam Sinifi Uyaniyor\n1976\n94\n8.7\n20634\n\n\n197\nHababam Sinifi Tatilde\n1977\n97\n8.6\n18632\n\n\n\n\nknitr::kable(first_11_new)\n\n\n\n\n\nTitle\nYear\nDuration\nRating\nVote\n\n\n\n\n4\nAyla: The Daughter of War\n2017\n125\n8.3\n42975\n\n\n1\nYedinci Kogustaki Mucize\n2019\n132\n8.2\n54121\n\n\n5\nBabam ve Oglum\n2005\n108\n8.2\n91009\n\n\n8\nEskiya\n1996\n128\n8.1\n71691\n\n\n11\nHer Sey Çok Güzel Olacak\n1998\n107\n8.1\n27108\n\n\n2\nKis Uykusu\n2014\n196\n8.0\n54601\n\n\n3\nNefes: Vatan Sagolsun\n2009\n128\n8.0\n34994\n\n\n6\nAhlat Agaci\n2018\n188\n8.0\n26965\n\n\n9\nG.O.R.A.\n2004\n127\n8.0\n66012\n\n\n10\nVizontele\n2001\n110\n8.0\n38390\n\n\n7\nBir Zamanlar Anadolu’da\n2011\n157\n7.8\n49325\n\n\n\n\nidentical(first_11_old, first_11_new)\n\n[1] FALSE\n\n\nAs we see, they’re not identical. This implies that IMDb doesn’t use only the rankings. Firstly, of course they look at their rankings but it is not the only criteria. They have to pass the minimum number of ratings threshold. And some different criteria exist for this algorithm. For example, they shared their algorithm to create Top 250 list.\n\nThe following formula is used to calculate the Top Rated 250 titles. This formula provides a true ‘Bayesian estimate’, which takes into account the number of votes each title has received, minimum votes required to be on the list, and the mean vote for all titles:\nweighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C\nWhere:\nR = average for the movie (mean) = (rating)\nv = number of votes for the movie = (votes)\nm = minimum votes required to be listed in the Top Rated 250 list (currently 25,000)\nC = the mean vote across the whole report"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#final-data-frame",
+    "href": "assignments/assignment-2.html#final-data-frame",
+    "title": "Assignment 2",
+    "section": "Final Data Frame",
+    "text": "Final Data Frame\nI know you also can’t wait to see the final version of our data too!\n\nscrapped_data &lt;- data.frame(Title = titles_cleaned,\n                            Year = years_cleaned,\n                            Duration = durations_cleaned,\n                            Rating = ratings_cleaned,\n                            Vote = votes_cleaned)\n\nhead(scrapped_data, n=10)\n\n                    Title Year Duration Rating  Vote\n1              Yahsi Bati 2009      112    7.4 37767\n2                 D@bbe 2 2009       85    3.0  2662\n3         Baska Dilde Ask 2009       98    7.3  7087\n4                  Vavien 2009      100    7.5 13496\n5            Neseli Hayat 2009      100    6.1  7522\n6         7 Kocali Hürmüz 2009      122    6.3  5817\n7  Kurtlar Vadisi: Gladio 2009       97    6.2  5288\n8               Kiskanmak 2009       96    6.5  3454\n9               Kolpaçino 2009       98    6.5 13648\n10         Kanal-i-zasyon 2009      113    5.0  3907\n\nsummary(scrapped_data)\n\n    Title                Year         Duration          Rating     \n Length:470         Min.   :1963   Min.   : 48.00   Min.   :1.000  \n Class :character   1st Qu.:1999   1st Qu.: 92.25   1st Qu.:5.800  \n Mode  :character   Median :2010   Median :104.00   Median :6.750  \n                    Mean   :2005   Mean   :104.34   Mean   :6.375  \n                    3rd Qu.:2016   3rd Qu.:114.00   3rd Qu.:7.400  \n                    Max.   :2023   Max.   :197.00   Max.   :9.200  \n      Vote       \n Min.   :  2510  \n 1st Qu.:  3526  \n Median :  5203  \n Mean   :  9508  \n 3rd Qu.:  9997  \n Max.   :109851"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#new-data-frame",
+    "href": "assignments/assignment-2.html#new-data-frame",
+    "title": "Assignment 2",
+    "section": "New Data Frame",
+    "text": "New Data Frame\n\nnew_data &lt;- data.frame(Title = new_titles_cleaned, Year = new_years_cleaned)"
   }
 ]

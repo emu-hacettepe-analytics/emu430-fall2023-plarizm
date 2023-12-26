@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -113,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/plarizm" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/serhateralp01" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
     <a href="https://www.linkedin.com/in/serhateralp/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -169,7 +203,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assignment-2" id="toc-assignment-2" class="nav-link active" data-scroll-target="#assignment-2">Assignment 2</a></li>
+  <li><a href="#prepare-urls" id="toc-prepare-urls" class="nav-link active" data-scroll-target="#prepare-urls">1. Prepare URL’s</a>
+  <ul class="collapse">
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
+  <li><a href="#urls" id="toc-urls" class="nav-link" data-scroll-target="#urls">URL’s</a></li>
+  </ul></li>
+  <li><a href="#scrapping-data" id="toc-scrapping-data" class="nav-link" data-scroll-target="#scrapping-data">2. Scrapping Data</a>
+  <ul class="collapse">
+  <li><a href="#titles" id="toc-titles" class="nav-link" data-scroll-target="#titles">Titles</a></li>
+  <li><a href="#years" id="toc-years" class="nav-link" data-scroll-target="#years">Years</a></li>
+  <li><a href="#durations" id="toc-durations" class="nav-link" data-scroll-target="#durations">Durations</a></li>
+  <li><a href="#ratings" id="toc-ratings" class="nav-link" data-scroll-target="#ratings">Ratings</a></li>
+  <li><a href="#votes" id="toc-votes" class="nav-link" data-scroll-target="#votes">Votes</a></li>
+  <li><a href="#final-data-frame" id="toc-final-data-frame" class="nav-link" data-scroll-target="#final-data-frame">Final Data Frame</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">3. Exploratory Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#a." id="toc-a." class="nav-link" data-scroll-target="#a.">A.</a></li>
+  <li><a href="#b." id="toc-b." class="nav-link" data-scroll-target="#b.">B.</a></li>
+  <li><a href="#c." id="toc-c." class="nav-link" data-scroll-target="#c.">C.</a></li>
+  <li><a href="#d." id="toc-d." class="nav-link" data-scroll-target="#d.">D.</a></li>
+  <li><a href="#e." id="toc-e." class="nav-link" data-scroll-target="#e.">E.</a></li>
+  </ul></li>
+  <li><a href="#turkish-movies-that-in-top-1000-on-imdb" id="toc-turkish-movies-that-in-top-1000-on-imdb" class="nav-link" data-scroll-target="#turkish-movies-that-in-top-1000-on-imdb">4. Turkish movies that in top 1000 on IMDb</a>
+  <ul class="collapse">
+  <li><a href="#titles-1" id="toc-titles-1" class="nav-link" data-scroll-target="#titles-1">Titles</a></li>
+  <li><a href="#years-1" id="toc-years-1" class="nav-link" data-scroll-target="#years-1">Years</a></li>
+  <li><a href="#new-data-frame" id="toc-new-data-frame" class="nav-link" data-scroll-target="#new-data-frame">New Data Frame</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -197,14 +259,764 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="assignment-2" class="level1">
-<h1>Assignment 2</h1>
-<p>This page is under construction.</p>
+<section id="prepare-urls" class="level1">
+<h1>1. Prepare URL’s</h1>
+<p>In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <a href="https://m.imdb.com/search" class="uri">https://m.imdb.com/search</a> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.</p>
+<section id="libraries" class="level2">
+<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<p>So let’s start with uploading the libraries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for everything :)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest) <span class="co"># for HTML scraping</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'rvest'
+
+The following object is masked from 'package:readr':
+
+    guess_encoding</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr) <span class="co"># for string processing</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co">#for formatting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'
+
+The following object is masked from 'package:purrr':
+
+    discard
+
+The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra) <span class="co">#for showing data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'gridExtra'
+
+The following object is masked from 'package:dplyr':
+
+    combine</code></pre>
+</div>
+</div>
+<p>IMDb’s Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding “&amp;count=250” to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the “Release Date” filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL’s I obtained from the above searches.</p>
+</section>
+<section id="urls" class="level2">
+<h2 class="anchored" data-anchor-id="urls">URL’s</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'https://www.imdb.com/search/title/?title_type=feature&amp;release_date=,2009-12-31&amp;sort=release_date,desc&amp;num_votes=2500,&amp;country_of_origin=TR&amp;count=250'</span>,<span class="st">'https://m.imdb.com/search/title/?title_type=feature&amp;release_date=2010-01-01,2023-12-31&amp;sort=release_date,desc&amp;num_votes=2500,&amp;country_of_origin=TR&amp;count=250'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we have to reach the information inside URL’s. That’s how we read them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_html <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> data_urls) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">read_html</span>(x)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  data_html <span class="ot">&lt;-</span> <span class="fu">c</span>(data_html, <span class="fu">list</span>(a))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="scrapping-data" class="level1">
+<h1>2. Scrapping Data</h1>
+<section id="titles" class="level2">
+<h2 class="anchored" data-anchor-id="titles">Titles</h2>
+<p>After that, we are finally starting to see some data! By using <code>SelectorGadget</code> , we found proper CSS selector to get title data from HTML code and with using <code>html_text()</code> function, we returned just the raw underlying text.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>titles_list <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (doc <span class="cf">in</span> data_html) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  title_elements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(doc, <span class="st">'.ipc-title__text'</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  titles_list <span class="ot">&lt;-</span> <span class="fu">c</span>(titles_list, title_elements)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titles_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Advanced search"    "1. Yahsi Bati"      "2. D@bbe 2"        
+[4] "3. Baska Dilde Ask" "4. Vavien"          "5. Neseli Hayat"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(titles_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Length     Class      Mode 
+      474 character character </code></pre>
+</div>
+</div>
+<p>But, it seems like there are some problems with our data. Firstly, my professor said I need to find 470 movies, but now i have 474 elements in vector we created. Let’s fix it first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>titles_list <span class="ot">&lt;-</span> titles_list[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Advanced"</span>, titles_list)]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>titles_list <span class="ot">&lt;-</span> titles_list[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Recently"</span>, titles_list)]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titles_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1. Yahsi Bati"      "2. D@bbe 2"         "3. Baska Dilde Ask"
+[4] "4. Vavien"          "5. Neseli Hayat"    "6. 7 Kocali Hürmüz"</code></pre>
+</div>
+</div>
+<p>This cleaned the other titles that website does have excluding movie titles. But we’re facing with another problem now. We just want to get the names of the data.</p>
+<p>To fix that, I used the function <code>gsub</code> with a <code>for</code> loop. This function search for matches to argument <code>pattern</code> within each element of a character vector and perform replacement.</p>
+<p>The pattern <strong><code>"^[0-9]+\\.\\s*"</code></strong> is a regular expression that matches a sequence at the beginning of a string (<strong><code>^</code></strong>) consisting of one or more digits (<strong><code>[0-9]+</code></strong>), followed by a period (<strong><code>\\.</code></strong>), and then any number of whitespace characters (<strong><code>\\s*</code></strong>). The replacement string <strong><code>""</code></strong> indicates that this matched sequence is being replaced with an empty string.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>titles_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> titles_list) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"^[0-9]+</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">s*"</span>, <span class="st">""</span>, x)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  titles_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>(titles_cleaned, a)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(titles_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yahsi Bati"      "D@bbe 2"         "Baska Dilde Ask" "Vavien"         
+[5] "Neseli Hayat"    "7 Kocali Hürmüz"</code></pre>
+</div>
+</div>
+</section>
+<section id="years" class="level2">
+<h2 class="anchored" data-anchor-id="years">Years</h2>
+<p>Let’s head to the other topics we need to get, year and duration. To get them, we need to find the proper CSS selector for it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>title_metadata_list <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> data_html) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  year_elements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(num, <span class="st">'.sc-43986a27-8.jHYIIK.dli-title-metadata-item'</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  title_metadata_list <span class="ot">&lt;-</span> <span class="fu">c</span>(title_metadata_list, year_elements)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Unfortunately, in the website we’re using, the creators store different data together in one selector. So, we need to create some filters to acquire the data we want.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>years_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> title_metadata_list) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^[0-9]+$"</span>, a, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  years_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>(years_cleaned, x)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(years_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Length     Class      Mode 
+      470 character character </code></pre>
+</div>
+</div>
+<p>It created a list that have characters we want, but to proceed and filter them properly, we need to make them integer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>years_cleaned <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(years_cleaned)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(years_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1963    1999    2010    2005    2016    2023 </code></pre>
+</div>
+</div>
+</section>
+<section id="durations" class="level2">
+<h2 class="anchored" data-anchor-id="durations">Durations</h2>
+<p>It is showing the summary data of integer list. That was what we wanted. Now, let’s look the metadata again to find how to get durations of the movies.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(title_metadata_list, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "2009"   "1h 52m" "7+"     "2009"   "1h 25m" "2009"   "1h 38m" "G"     
+ [9] "2009"   "1h 40m"</code></pre>
+</div>
+</div>
+<p>Can’t you see? This includes durations too! Let’s catch them and put in a list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>duration_elements <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> title_metadata_list) {</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"[hm]"</span>, a, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  duration_elements <span class="ot">&lt;-</span> <span class="fu">c</span>(duration_elements, x)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(duration_elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1h 52m" "1h 25m" "1h 38m" "1h 40m" "1h 40m" "2h 2m" </code></pre>
+</div>
+</div>
+<p>Oh no, teacher wanted me to make them minutes. I have to write a function for it immediately!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>convert_to_minutes <span class="ot">&lt;-</span> <span class="cf">function</span>(time_str) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    hours <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(time_str, <span class="st">"</span><span class="sc">\\</span><span class="st">d+(?=h)"</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    minutes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(time_str, <span class="st">"</span><span class="sc">\\</span><span class="st">d+(?=m)"</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(hours)) { hours <span class="ot">&lt;-</span> <span class="dv">0</span> }</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(minutes)) { minutes <span class="ot">&lt;-</span> <span class="dv">0</span> }</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    total_minutes <span class="ot">&lt;-</span> hours <span class="sc">*</span> <span class="dv">60</span> <span class="sc">+</span> minutes</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(total_minutes)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>okay, everything is under control now.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>durations_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> duration_elements){</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">convert_to_minutes</span>(a)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  durations_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>(durations_cleaned, x)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(durations_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 112  85  98 100 100 122</code></pre>
+</div>
+</div>
+</section>
+<section id="ratings" class="level2">
+<h2 class="anchored" data-anchor-id="ratings">Ratings</h2>
+<p>Now, we only need to get number of votes that movies got and their ratings according to these votes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>rating_vote_data <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (page <span class="cf">in</span> data_html) {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(page, <span class="st">'.ipc-rating-star.ipc-rating-star--base.ipc-rating-star--imdb.ratingGroup--imdb-rating'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  rating_vote_data <span class="ot">&lt;-</span> <span class="fu">c</span>(rating_vote_data, data)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rating_vote_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "7.4&nbsp;(38K)"  "3.0&nbsp;(2.7K)" "7.3&nbsp;(7.1K)" "7.5&nbsp;(13K)"  "6.1&nbsp;(7.5K)"
+[6] "6.3&nbsp;(5.8K)"</code></pre>
+</div>
+</div>
+<p>And the same issue is appearing in here too. They are storing the ratings and rounded versions of number of votes together. I remember that I can get the exact vote number in a different CSS Selector, so let’s just get the rating data from here.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ratings_list <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (data <span class="cf">in</span> rating_vote_data) {</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  rating_elements <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^([0-9]</span><span class="sc">\\</span><span class="st">.[0-9]).*$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, data)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  ratings_list <span class="ot">&lt;-</span> <span class="fu">c</span>(ratings_list, rating_elements)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ratings_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "7.4" "3.0" "7.3" "7.5" "6.1" "6.3"</code></pre>
+</div>
+</div>
+<p>They should be integer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ratings_cleaned <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ratings_list)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ratings_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.4 3.0 7.3 7.5 6.1 6.3</code></pre>
+</div>
+</div>
+</section>
+<section id="votes" class="level2">
+<h2 class="anchored" data-anchor-id="votes">Votes</h2>
+<p>We did it too! Number of votes are only remaining data that we have to get.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>vote_list <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> data_html) {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  vote <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(num, <span class="st">'.sc-53c98e73-0.kRnqtn'</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  vote_list <span class="ot">&lt;-</span> <span class="fu">c</span>(vote_list, vote)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vote_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Votes37,767" "Votes2,662"  "Votes7,087"  "Votes13,496" "Votes7,522" 
+[6] "Votes5,817" </code></pre>
+</div>
+</div>
+<p>What a shame! Which website stores data like this?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>votes_cleaned <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">sapply</span>(vote_list, <span class="cf">function</span>(x) {</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  numeric_value <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"Votes|,"</span>, <span class="st">""</span>, x)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(votes_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37767  2662  7087 13496  7522  5817</code></pre>
+</div>
+</div>
+</section>
+<section id="final-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="final-data-frame">Final Data Frame</h2>
+<p>I know you also can’t wait to see the final version of our data too!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>scrapped_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Title =</span> titles_cleaned,</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Year =</span> years_cleaned,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Duration =</span> durations_cleaned,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Rating =</span> ratings_cleaned,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Vote =</span> votes_cleaned)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(scrapped_data, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Title Year Duration Rating  Vote
+1              Yahsi Bati 2009      112    7.4 37767
+2                 D@bbe 2 2009       85    3.0  2662
+3         Baska Dilde Ask 2009       98    7.3  7087
+4                  Vavien 2009      100    7.5 13496
+5            Neseli Hayat 2009      100    6.1  7522
+6         7 Kocali Hürmüz 2009      122    6.3  5817
+7  Kurtlar Vadisi: Gladio 2009       97    6.2  5288
+8               Kiskanmak 2009       96    6.5  3454
+9               Kolpaçino 2009       98    6.5 13648
+10         Kanal-i-zasyon 2009      113    5.0  3907</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(scrapped_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Title                Year         Duration          Rating     
+ Length:470         Min.   :1963   Min.   : 48.00   Min.   :1.000  
+ Class :character   1st Qu.:1999   1st Qu.: 92.25   1st Qu.:5.800  
+ Mode  :character   Median :2010   Median :104.00   Median :6.750  
+                    Mean   :2005   Mean   :104.34   Mean   :6.375  
+                    3rd Qu.:2016   3rd Qu.:114.00   3rd Qu.:7.400  
+                    Max.   :2023   Max.   :197.00   Max.   :9.200  
+      Vote       
+ Min.   :  2510  
+ 1st Qu.:  3526  
+ Median :  5203  
+ Mean   :  9508  
+ 3rd Qu.:  9997  
+ Max.   :109851  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exploratory-data-analysis" class="level1">
+<h1>3. Exploratory Data Analysis</h1>
+<p>Okay it was cool enough that the part we scrapped the data, but now we need to head for the Exploratory Data Analysis.</p>
+<p>We together will create visualizations to address the following questions, and provide insightful facts about the Turkish movie industry. The questions will guide our analysis.</p>
+<section id="a." class="level2" style="color: Red">
+<h2 class="anchored" data-anchor-id="a.">A.</h2>
+<div style="color: black">
+<p><em><code>Arrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?</code></em></p>
+</div>
+</section>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>descending_by_rating <span class="ot">&lt;-</span> scrapped_data[<span class="fu">order</span>(scrapped_data<span class="sc">$</span>Rating, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>top_five <span class="ot">&lt;-</span> <span class="fu">slice_head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>top_five</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         Title Year Duration Rating  Vote
+1               Hababam Sinifi 1975       87    9.2 42503
+2       CM101MMXI Fundamentals 2013      139    9.1 46992
+3                   Tosun Pasa 1976       90    8.9 24323
+4 Hababam Sinifi Sinifta Kaldi 1975       95    8.9 24364
+5                Süt Kardesler 1976       80    8.8 20881</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bottom_five <span class="ot">&lt;-</span> <span class="fu">slice_tail</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>bottom_five</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           Title Year Duration Rating  Vote
+1                          Müjde 2022       48    1.2  9920
+2              15/07 Safak Vakti 2021       95    1.2 20605
+3                 Cumali Ceber 2 2018      100    1.2 10227
+4 Cumali Ceber: Allah Seni Alsin 2017      100    1.0 39265
+5                           Reis 2017      108    1.0 73971</code></pre>
+</div>
+</div>
+<p><span style="color: green">Actually, I never watched the bottom ones (just as like any person that has self-respect) but I did some of the top ones. Almost all of the best ones the old Turkish movies that named “Yeşilçam”</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div style="color: Red">
+<section id="b." class="level2" style="color: Red">
+<h2 class="anchored" data-anchor-id="b.">B.</h2>
+<div style="color: black">
+<p><em><code>Check the ratings of 2-3 of your favorite movies. What are their standings?</code></em></p>
+</div>
+</section>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>my_favorites <span class="ot">&lt;-</span> <span class="fu">filter</span>(scrapped_data, Title <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"G.O.R.A."</span>,<span class="st">"Ölümlü Dünya 2"</span>,<span class="st">"Organize Isler"</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>my_favorites <span class="sc">%&gt;%</span> <span class="fu">select</span>(Title, Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Title Rating
+1 Organize Isler    7.4
+2       G.O.R.A.    8.0
+3 Ölümlü Dünya 2    7.5</code></pre>
+</div>
+</div>
+<p><span style="color: green">These are my favorites.</span></p>
+<div style="color: Red">
+<section id="c." class="level2" style="color: Red">
+<h2 class="anchored" data-anchor-id="c.">C.</h2>
+<div style="color: black">
+<p><em><code>Considering that audience rating is a crucial indicator of movie quality, what can you infer about the average ratings of Turkish movies over the years? Calculate yearly rating averages and plot them as a scatter plot. Hint: Use functions like group_by(), summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution, plot box plots of ratings over the years (each year having a box plot showing statistics about the ratings of movies in that year). What insights do you gather from the box plot?</code></em></p>
+</div>
+</section>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>yearly_average <span class="ot">&lt;-</span> scrapped_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">AverageRating =</span> <span class="fu">mean</span>(Rating))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of movies over the years</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>movies_per_year <span class="ot">&lt;-</span> scrapped_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">NumberOfMovies =</span> <span class="fu">n</span>())</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(movies_per_year, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> NumberOfMovies)) <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Turkish Movies Released Each Year"</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Movies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Yearly rating averages</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(yearly_average, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> AverageRating)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Yearly Average Ratings of Turkish Movies"</span>,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># box plots of ratings over the years</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scrapped_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Year), <span class="at">y =</span> Rating)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Box Plot of Movie Ratings Over the Years"</span>,</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span style="color: green">Before looking at the box plot data, we may say that average ratings have swiftly decreased over the years, but in the box plot, we can see the medians have not changed that much, but poor-quality movies are magnificently increased.</span></p>
+<div style="color: Red">
+<section id="d." class="level2" style="color: Red">
+<h2 class="anchored" data-anchor-id="d.">D.</h2>
+<div style="color: black">
+<p><em><code>Do you believe there is a relationship between the number of votes a movie received</code></em> <em><code>and its rating? Investigate the correlation between Votes and Ratings.</code></em></p>
+</div>
+</section>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scrapped_data, <span class="fu">aes</span>(<span class="at">x =</span> Vote, <span class="at">y =</span> Rating)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number_auto</span>()) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlation Between Votes and Ratings"</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Number of Votes"</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="assignment-2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span style="color: green">Thanks to the regression line, we can see that there is a small correlation between number of votes and ratings.</span></p>
+<div style="color: Red">
+<section id="e." class="level2" style="color: Red">
+<h2 class="anchored" data-anchor-id="e.">E.</h2>
+<div style="color: black">
+<p><em><code>Do you believe there is a relationship between a movie’s duration and its rating?</code></em> <em><code>Investigate the correlation between Duration and Ratings.</code></em></p>
+</div>
+</section>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scrapped_data, <span class="fu">aes</span>(<span class="at">x =</span> Duration, <span class="at">y =</span> Rating)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relationship Between Movie Duration and Rating"</span>,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Duration (minutes)"</span>,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="assignment-2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span style="color: green">As we can guess, there is no correlation between duration and rating.</span></p>
+</section>
+<section id="turkish-movies-that-in-top-1000-on-imdb" class="level1">
+<h1>4. Turkish movies that in top 1000 on IMDb</h1>
+<p>Now, I used IMDb’s Advanced Title Search interface with The Title Type set to “Movie” only, the Country set to “Turkey” with the option “Search country of origin only” active, and the Awards &amp; Recognation set to “IMDB Top 1000”. I found a total of 11 movies.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>new_data_url <span class="ot">&lt;-</span> <span class="st">"https://m.imdb.com/search/title/?title_type=feature&amp;groups=top_1000&amp;country_of_origin=TR"</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>new_data_html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(new_data_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This new data will be used to get the information of my new table.</p>
+<section id="titles-1" class="level2">
+<h2 class="anchored" data-anchor-id="titles-1">Titles</h2>
+<p>I did the same process I’ve done for first scrape.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>new_titles <span class="ot">&lt;-</span> new_data_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">".ipc-title__text"</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>new_titles <span class="ot">&lt;-</span> new_titles[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Advanced"</span>, new_titles)]</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>new_titles <span class="ot">&lt;-</span> new_titles[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Recently"</span>, new_titles)]</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>new_titles_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> new_titles) {</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"^[0-9]+</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">s*"</span>, <span class="st">""</span>, x)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  new_titles_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>(new_titles_cleaned, a)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="years-1" class="level2">
+<h2 class="anchored" data-anchor-id="years-1">Years</h2>
+<p>I did the same process again that I’ve done for first scrape.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>new_metadata_list <span class="ot">&lt;-</span> new_data_html <span class="sc">%&gt;%</span> <span class="fu">html_elements</span>(<span class="st">".sc-43986a27-8.jHYIIK.dli-title-metadata-item"</span>) <span class="sc">%&gt;%</span> <span class="fu">html_text</span>()</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>new_years_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> new_metadata_list) {</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^[0-9]+$"</span>, a, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  new_years_cleaned <span class="ot">&lt;-</span> <span class="fu">c</span>(new_years_cleaned, x)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>new_years_cleaned <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(new_years_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="new-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="new-data-frame">New Data Frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Title =</span> new_titles_cleaned, <span class="at">Year =</span> new_years_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>Perfectly executed everything, but we have a new data frame with Turkish movies in the top 1000, containing only the <strong>title</strong> and <strong>year</strong>. Now I’ll use my initial <strong><code>scrapped_data</code></strong> frame and an appropriate join operation to fill in the duration, rating, and votes attributes of the <code>new_data</code> frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> new_data <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(scrapped_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Title"</span>, <span class="st">"Year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>new_descending_by_rating <span class="ot">&lt;-</span> joined_data[<span class="fu">order</span>(joined_data<span class="sc">$</span>Rating, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s compare the first 11 elements of the tables, descending order based on ratings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>first_11_old <span class="ot">&lt;-</span> <span class="fu">head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">11</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>first_11_new <span class="ot">&lt;-</span> new_descending_by_rating</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_old)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Title</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Duration</th>
+<th style="text-align: right;">Rating</th>
+<th style="text-align: right;">Vote</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">209</td>
+<td style="text-align: left;">Hababam Sinifi</td>
+<td style="text-align: right;">1975</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">42503</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">424</td>
+<td style="text-align: left;">CM101MMXI Fundamentals</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">46992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">198</td>
+<td style="text-align: left;">Tosun Pasa</td>
+<td style="text-align: right;">1976</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">24323</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">205</td>
+<td style="text-align: left;">Hababam Sinifi Sinifta Kaldi</td>
+<td style="text-align: right;">1975</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">24364</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">204</td>
+<td style="text-align: left;">Süt Kardesler</td>
+<td style="text-align: right;">1976</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">20881</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">141</td>
+<td style="text-align: left;">Zügürt Aga</td>
+<td style="text-align: right;">1985</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">16130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">187</td>
+<td style="text-align: left;">Kibar Feyzo</td>
+<td style="text-align: right;">1978</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">17123</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">190</td>
+<td style="text-align: left;">Neseli Günler</td>
+<td style="text-align: right;">1978</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">11802</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">194</td>
+<td style="text-align: left;">Saban Oglu Saban</td>
+<td style="text-align: right;">1977</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">18533</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">201</td>
+<td style="text-align: left;">Hababam Sinifi Uyaniyor</td>
+<td style="text-align: right;">1976</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">20634</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">197</td>
+<td style="text-align: left;">Hababam Sinifi Tatilde</td>
+<td style="text-align: right;">1977</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">18632</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Title</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Duration</th>
+<th style="text-align: right;">Rating</th>
+<th style="text-align: right;">Vote</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ayla: The Daughter of War</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">42975</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Yedinci Kogustaki Mucize</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">8.2</td>
+<td style="text-align: right;">54121</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Babam ve Oglum</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">8.2</td>
+<td style="text-align: right;">91009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Eskiya</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: right;">71691</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Her Sey Çok Güzel Olacak</td>
+<td style="text-align: right;">1998</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: right;">27108</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Kis Uykusu</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">54601</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Nefes: Vatan Sagolsun</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">34994</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Ahlat Agaci</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">188</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">26965</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">G.O.R.A.</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">66012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">Vizontele</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">38390</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Bir Zamanlar Anadolu’da</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">49325</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(first_11_old, first_11_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>As we see, they’re not identical. This implies that IMDb doesn’t use only the rankings. Firstly, of course they look at their rankings but it is not the only criteria. They have to pass the minimum number of ratings threshold. And some different criteria exist for this algorithm. For example, they shared their algorithm to create Top 250 list.</p>
+<blockquote class="blockquote">
+<p><span style="background-color: #f3ce13; color:black"><em>The following formula is used to calculate the Top Rated 250 titles. This formula provides a true ‘Bayesian estimate’, which takes into account the number of votes each title has received, minimum votes required to be on the list, and the mean vote for all titles:</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>Where:</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>R = average for the movie (mean) = (rating)</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>v = number of votes for the movie = (votes)</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>m = minimum votes required to be listed in the Top Rated 250 list (currently 25,000)</em></span></p>
+<p><span style="background-color: #f3ce13; color:black"><em>C = the mean vote across the whole report</em></span></p>
+</blockquote>
 
 
 </section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span style="color: green">Do you know that where “Yeşilçam” name comes from? Yeşilçam is a street located in the Beyoğlu district of Istanbul, close to Taksim. Since the offices of most of the film companies were located on this street in the pre-1980 period, Turkish cinema began to be known as Yeşilçam. It literally means Green Pine in Turkish.</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
