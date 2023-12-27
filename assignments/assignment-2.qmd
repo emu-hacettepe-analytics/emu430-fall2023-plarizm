@@ -147,7 +147,7 @@ convert_to_minutes <- function(time_str) {
 
 okay, everything is under control now.
 
-```{r}
+```{r using function}
 durations_cleaned <- c()
 for (a in duration_elements){
   x <- convert_to_minutes(a)
@@ -160,7 +160,7 @@ head(durations_cleaned)
 
 Now, we only need to get number of votes that movies got and their ratings according to these votes.
 
-```{r}
+```{r get ratings}
 rating_vote_data <- c()
 for (page in data_html) {
   data <- html_elements(page, '.ipc-rating-star.ipc-rating-star--base.ipc-rating-star--imdb.ratingGroup--imdb-rating') %>% 
@@ -172,7 +172,7 @@ head(rating_vote_data)
 
 And the same issue is appearing in here too. They are storing the ratings and rounded versions of number of votes together. I remember that I can get the exact vote number in a different CSS Selector, so let's just get the rating data from here.
 
-```{r}
+```{r make ratings clean}
 ratings_list <- c()
 for (data in rating_vote_data) {
   rating_elements <- sub("^([0-9]\\.[0-9]).*$", "\\1", data)
@@ -184,7 +184,7 @@ head(ratings_list)
 
 They should be integer.
 
-```{r}
+```{r make ratings integer}
 ratings_cleaned <- as.numeric(ratings_list)
 head(ratings_cleaned)
 ```
@@ -193,7 +193,7 @@ head(ratings_cleaned)
 
 We did it too! Number of votes are only remaining data that we have to get.
 
-```{r}
+```{r get votes}
 vote_list <- c()
 for (num in data_html) {
   vote <- html_elements(num, '.sc-53c98e73-0.kRnqtn') %>% html_text()
@@ -204,7 +204,7 @@ head(vote_list)
 
 What a shame! Which website stores data like this?
 
-```{r}
+```{r make votes clean}
 votes_cleaned <- as.numeric(sapply(vote_list, function(x) {
   numeric_value <- gsub("Votes|,", "", x)
 }))
@@ -215,7 +215,7 @@ head(votes_cleaned)
 
 I know you also can't wait to see the final version of our data too!
 
-```{r}
+```{r final data frame}
 scrapped_data <- data.frame(Title = titles_cleaned,
                             Year = years_cleaned,
                             Duration = durations_cleaned,
@@ -240,13 +240,13 @@ We together will create visualizations to address the following questions, and p
 :::
 :::
 
-```{r}
+```{r top and bottom 5}
 descending_by_rating <- scrapped_data[order(scrapped_data$Rating, decreasing = TRUE),]
 
-top_five <- slice_head(descending_by_rating, n=5)
+top_five <- head(descending_by_rating, n=5)
 top_five
 
-bottom_five <- slice_tail(descending_by_rating, n=5)
+bottom_five <- tail(descending_by_rating, n=5)
 bottom_five
 ```
 
@@ -264,7 +264,7 @@ bottom_five
 :::
 :::
 
-```{r}
+```{r my favorite movies}
 my_favorites <- filter(scrapped_data, Title %in% c("G.O.R.A.","Ölümlü Dünya 2","Organize Isler"))
 
 my_favorites %>% select(Title, Rating)
@@ -282,7 +282,7 @@ my_favorites %>% select(Title, Rating)
 :::
 :::
 
-```{r}
+```{r plots}
 yearly_average <- scrapped_data %>% group_by(Year) %>% summarise(AverageRating = mean(Rating))
 
 # Number of movies over the years
@@ -325,7 +325,7 @@ ggplot(scrapped_data, aes(x = as.factor(Year), y = Rating)) +
 :::
 :::
 
-```{r}
+```{r number of votes and rating}
 ggplot(scrapped_data, aes(x = Vote, y = Rating)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", color = "red") +
@@ -348,7 +348,7 @@ ggplot(scrapped_data, aes(x = Vote, y = Rating)) +
 :::
 :::
 
-```{r}
+```{r duration and rating}
 ggplot(scrapped_data, aes(x = Duration, y = Rating)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", color = "blue") +
@@ -365,7 +365,7 @@ ggplot(scrapped_data, aes(x = Duration, y = Rating)) +
 
 Now, I used IMDb's Advanced Title Search interface with The Title Type set to "Movie" only, the Country set to "Turkey" with the option "Search country of origin only" active, and the Awards & Recognation set to "IMDB Top 1000". I found a total of 11 movies.
 
-```{r}
+```{r new urls}
 new_data_url <- "https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR"
 
 new_data_html <- read_html(new_data_url)
@@ -377,7 +377,7 @@ This new data will be used to get the information of my new table.
 
 I did the same process I've done for first scrape.
 
-```{r}
+```{r new titles}
 new_titles <- new_data_html %>% html_elements(".ipc-title__text") %>% html_text()
 new_titles <- new_titles[!grepl("Advanced", new_titles)]
 new_titles <- new_titles[!grepl("Recently", new_titles)]
@@ -393,7 +393,7 @@ for (x in new_titles) {
 
 I did the same process again that I've done for first scrape.
 
-```{r}
+```{r new years}
 new_metadata_list <- new_data_html %>% html_elements(".sc-43986a27-8.jHYIIK.dli-title-metadata-item") %>% html_text()
 
 new_years_cleaned <- c()
@@ -407,7 +407,7 @@ new_years_cleaned <- as.integer(new_years_cleaned)
 
 ## New Data Frame
 
-```{r}
+```{r new data frame}
 new_data <- data.frame(Title = new_titles_cleaned, Year = new_years_cleaned)
 ```
 
@@ -415,7 +415,7 @@ new_data <- data.frame(Title = new_titles_cleaned, Year = new_years_cleaned)
 
 Perfectly executed everything, but we have a new data frame with Turkish movies in the top 1000, containing only the **title** and **year**. Now I'll use my initial **`scrapped_data`** frame and an appropriate join operation to fill in the duration, rating, and votes attributes of the `new_data` frame.
 
-```{r}
+```{r join operation}
 joined_data <- new_data %>% left_join(scrapped_data, by = c("Title", "Year"))
 
 head(joined_data)
@@ -423,13 +423,13 @@ head(joined_data)
 
 I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.
 
-```{r}
+```{r ordering joined data}
 new_descending_by_rating <- joined_data[order(joined_data$Rating, decreasing = TRUE),]
 ```
 
 Let's compare the first 11 elements of the tables, descending order based on ratings.
 
-```{r}
+```{r compare tables}
 first_11_old <- head(descending_by_rating, n=11)
 first_11_new <- new_descending_by_rating
 
@@ -454,4 +454,4 @@ As we see, they're not identical. This implies that IMDb doesn't use only the ra
 >
 > [*m = minimum votes required to be listed in the Top Rated 250 list (currently 25,000)*]{style="background-color: #f3ce13; color:black"}
 >
-> [*C = the mean vote across the whole report* ]{style="background-color: #f3ce13; color:black"}
+> [*C = the mean vote across the whole report*]{style="background-color: #f3ce13; color:black"}

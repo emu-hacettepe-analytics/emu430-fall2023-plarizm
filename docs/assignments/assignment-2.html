@@ -259,12 +259,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <a href="https://m.imdb.com/search" class="uri">https://m.imdb.com/search</a> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.</p>
+<p><span style="color: #8A8A8A">In this assignment, I will scrape raw data from IMDb, tidy it, and extract insightful results. IMDb has an Advanced Search feature on <a href="https://m.imdb.com/search" class="uri">https://m.imdb.com/search</a> that allows us to list available movie data on IMDb using various filters. Unfortunately, IMDb does not provide any download option for the results. Fortunately, we are taking the EMU430 course and thanks to what we learned in this course, will be able to scrape the HTML and then extract the results.</span></p>
 <section id="prepare-urls" class="level1">
 <h1>1. Prepare URL’s</h1>
 <section id="libraries" class="level2">
 <h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
-<p>So let’s start with uploading the libraries.</p>
+<p><span style="color: #8A8A8A">So let’s start with uploading the libraries.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for everything :)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -312,14 +312,14 @@ The following object is masked from 'package:dplyr':
     combine</code></pre>
 </div>
 </div>
-<p>IMDb’s Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding “&amp;count=250” to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the “Release Date” filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL’s I obtained from the above searches.</p>
+<p><span style="color: #8A8A8A">IMDb’s Advanced Title Search interface (they started using this a few times ago) allows viewing only 50 movies simultaneously. Therefore, using the resulting URL of my search, I could only scrap data for the first 50 movies. Adding “&amp;count=250” to the end of your search URL increased the list to 250 movies. And I completed my search by using partial searches with the “Release Date” filter of IMDb. I created 2 different URLs that are limited to 2010-2023, and before 2010, then created a vector that will contain the 2 URL’s I obtained from the above searches.</span></p>
 </section>
 <section id="urls" class="level2">
 <h2 class="anchored" data-anchor-id="urls">URL’s</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'https://www.imdb.com/search/title/?title_type=feature&amp;release_date=,2009-12-31&amp;sort=release_date,desc&amp;num_votes=2500,&amp;country_of_origin=TR&amp;count=250'</span>,<span class="st">'https://m.imdb.com/search/title/?title_type=feature&amp;release_date=2010-01-01,2023-12-31&amp;sort=release_date,desc&amp;num_votes=2500,&amp;country_of_origin=TR&amp;count=250'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, we have to reach the information inside URL’s. That’s how we read them:</p>
+<p><span style="color: #8A8A8A">Now, we have to reach the information inside URL’s. That’s how we read them:</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_html <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -334,7 +334,7 @@ The following object is masked from 'package:dplyr':
 <h1>2. Scrapping Data</h1>
 <section id="titles" class="level2">
 <h2 class="anchored" data-anchor-id="titles">Titles</h2>
-<p>After that, we are finally starting to see some data! By using <code>SelectorGadget</code> , we found proper CSS selector to get title data from HTML code and with using <code>html_text()</code> function, we returned just the raw underlying text.</p>
+<p><span style="After that, we are finally starting to see some data! By using SelectorGadget , we found proper CSS selector to get title data from HTML code and with using html_text() function, we returned just the raw underlying text.">After that, we are finally starting to see some data! By using <code>SelectorGadget</code> , we found proper CSS selector to get title data from HTML code and with using <code>html_text()</code> function, we returned just the raw underlying text.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>titles_list <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (doc <span class="cf">in</span> data_html) {</span>
@@ -509,8 +509,8 @@ The following object is masked from 'package:dplyr':
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vote_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Votes37,767" "Votes2,662"  "Votes7,087"  "Votes13,496" "Votes7,522" 
-[6] "Votes5,817" </code></pre>
+<pre><code>[1] "Votes37,772" "Votes2,662"  "Votes7,087"  "Votes13,499" "Votes7,524" 
+[6] "Votes5,818" </code></pre>
 </div>
 </div>
 <p>What a shame! Which website stores data like this?</p>
@@ -520,7 +520,7 @@ The following object is masked from 'package:dplyr':
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>}))</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(votes_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 37767  2662  7087 13496  7522  5817</code></pre>
+<pre><code>[1] 37772  2662  7087 13499  7524  5818</code></pre>
 </div>
 </div>
 </section>
@@ -537,15 +537,15 @@ The following object is masked from 'package:dplyr':
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(scrapped_data, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    Title Year Duration Rating  Vote
-1              Yahsi Bati 2009      112    7.4 37767
+1              Yahsi Bati 2009      112    7.4 37772
 2                 D@bbe 2 2009       85    3.0  2662
 3         Baska Dilde Ask 2009       98    7.3  7087
-4                  Vavien 2009      100    7.5 13496
-5            Neseli Hayat 2009      100    6.1  7522
-6         7 Kocali Hürmüz 2009      122    6.3  5817
+4                  Vavien 2009      100    7.5 13499
+5            Neseli Hayat 2009      100    6.1  7524
+6         7 Kocali Hürmüz 2009      122    6.3  5818
 7  Kurtlar Vadisi: Gladio 2009       97    6.2  5288
-8               Kiskanmak 2009       96    6.5  3454
-9               Kolpaçino 2009       98    6.5 13648
+8               Kiskanmak 2009       96    6.5  3455
+9               Kolpaçino 2009       98    6.5 13649
 10         Kanal-i-zasyon 2009      113    5.0  3907</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(scrapped_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -558,12 +558,12 @@ The following object is masked from 'package:dplyr':
                     3rd Qu.:2016   3rd Qu.:114.00   3rd Qu.:7.400  
                     Max.   :2023   Max.   :197.00   Max.   :9.200  
       Vote       
- Min.   :  2510  
+ Min.   :  2512  
  1st Qu.:  3526  
- Median :  5203  
- Mean   :  9508  
- 3rd Qu.:  9997  
- Max.   :109851  </code></pre>
+ Median :  5204  
+ Mean   :  9510  
+ 3rd Qu.:  9999  
+ Max.   :109857  </code></pre>
 </div>
 </div>
 </section>
@@ -581,25 +581,25 @@ The following object is masked from 'package:dplyr':
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>descending_by_rating <span class="ot">&lt;-</span> scrapped_data[<span class="fu">order</span>(scrapped_data<span class="sc">$</span>Rating, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>top_five <span class="ot">&lt;-</span> <span class="fu">slice_head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>top_five <span class="ot">&lt;-</span> <span class="fu">head</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>top_five</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                         Title Year Duration Rating  Vote
-1               Hababam Sinifi 1975       87    9.2 42503
-2       CM101MMXI Fundamentals 2013      139    9.1 46992
-3                   Tosun Pasa 1976       90    8.9 24323
-4 Hababam Sinifi Sinifta Kaldi 1975       95    8.9 24364
-5                Süt Kardesler 1976       80    8.8 20881</code></pre>
+<pre><code>                           Title Year Duration Rating  Vote
+209               Hababam Sinifi 1975       87    9.2 42509
+424       CM101MMXI Fundamentals 2013      139    9.1 46993
+198                   Tosun Pasa 1976       90    8.9 24325
+205 Hababam Sinifi Sinifta Kaldi 1975       95    8.9 24367
+204                Süt Kardesler 1976       80    8.8 20883</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bottom_five <span class="ot">&lt;-</span> <span class="fu">slice_tail</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>bottom_five <span class="ot">&lt;-</span> <span class="fu">tail</span>(descending_by_rating, <span class="at">n=</span><span class="dv">5</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>bottom_five</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                           Title Year Duration Rating  Vote
-1                          Müjde 2022       48    1.2  9920
-2              15/07 Safak Vakti 2021       95    1.2 20605
-3                 Cumali Ceber 2 2018      100    1.2 10227
-4 Cumali Ceber: Allah Seni Alsin 2017      100    1.0 39265
-5                           Reis 2017      108    1.0 73971</code></pre>
+<pre><code>                             Title Year Duration Rating  Vote
+243                          Müjde 2022       48    1.2  9920
+250              15/07 Safak Vakti 2021       95    1.2 20606
+297                 Cumali Ceber 2 2018      100    1.2 10228
+322 Cumali Ceber: Allah Seni Alsin 2017      100    1.0 39265
+332                           Reis 2017      108    1.0 73971</code></pre>
 </div>
 </div>
 <p><span style="color: green">Actually, I never watched the bottom ones (just as like any person that has self-respect) but I did some of the top ones. Almost all of the best ones the old Turkish movies that named “Yeşilçam”</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
@@ -644,7 +644,7 @@ The following object is masked from 'package:dplyr':
 <span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Movies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-2_files/figure-html/plots-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Yearly rating averages</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(yearly_average, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> AverageRating)) <span class="sc">+</span></span>
@@ -654,7 +654,7 @@ The following object is masked from 'package:dplyr':
 <span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-2_files/figure-html/plots-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># box plots of ratings over the years</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scrapped_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Year), <span class="at">y =</span> Rating)) <span class="sc">+</span></span>
@@ -665,7 +665,7 @@ The following object is masked from 'package:dplyr':
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment-2_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-2_files/figure-html/plots-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span style="color: green">Before looking at the box plot data, we may say that average ratings have swiftly decreased over the years, but in the box plot, we can see the medians have not changed that much, but poor-quality movies are magnificently increased.</span></p>
@@ -690,7 +690,7 @@ The following object is masked from 'package:dplyr':
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="assignment-2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-2_files/figure-html/number of votes and rating-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span style="color: green">Thanks to the regression line, we can see that there is a small correlation between number of votes and ratings.</span></p>
@@ -715,7 +715,7 @@ The following object is masked from 'package:dplyr':
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="assignment-2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-2_files/figure-html/duration and rating-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span style="color: green">As we can guess, there is no correlation between duration and rating.</span></p>
@@ -771,20 +771,15 @@ The following object is masked from 'package:dplyr':
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> new_data <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(scrapped_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Title"</span>, <span class="st">"Year"</span>))</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>joined_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(joined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                       Title Year Duration Rating  Vote
-1   Yedinci Kogustaki Mucize 2019      132    8.2 54121
-2                 Kis Uykusu 2014      196    8.0 54601
-3      Nefes: Vatan Sagolsun 2009      128    8.0 34994
-4  Ayla: The Daughter of War 2017      125    8.3 42975
-5             Babam ve Oglum 2005      108    8.2 91009
-6                Ahlat Agaci 2018      188    8.0 26965
-7    Bir Zamanlar Anadolu'da 2011      157    7.8 49325
-8                     Eskiya 1996      128    8.1 71691
-9                   G.O.R.A. 2004      127    8.0 66012
-10                 Vizontele 2001      110    8.0 38390
-11  Her Sey Çok Güzel Olacak 1998      107    8.1 27108</code></pre>
+<pre><code>                      Title Year Duration Rating  Vote
+1  Yedinci Kogustaki Mucize 2019      132    8.2 54137
+2                Kis Uykusu 2014      196    8.0 54613
+3     Nefes: Vatan Sagolsun 2009      128    8.0 35004
+4 Ayla: The Daughter of War 2017      125    8.3 42982
+5            Babam ve Oglum 2005      108    8.2 91013
+6               Ahlat Agaci 2018      188    8.0 26976</code></pre>
 </div>
 </div>
 <p>I need to order the 11 movies based on their rank to see if they are the same as first high-rated 11 movies in my initial data frame.</p>
@@ -816,7 +811,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1975</td>
 <td style="text-align: right;">87</td>
 <td style="text-align: right;">9.2</td>
-<td style="text-align: right;">42503</td>
+<td style="text-align: right;">42509</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">424</td>
@@ -824,7 +819,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2013</td>
 <td style="text-align: right;">139</td>
 <td style="text-align: right;">9.1</td>
-<td style="text-align: right;">46992</td>
+<td style="text-align: right;">46993</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">198</td>
@@ -832,7 +827,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1976</td>
 <td style="text-align: right;">90</td>
 <td style="text-align: right;">8.9</td>
-<td style="text-align: right;">24323</td>
+<td style="text-align: right;">24325</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">205</td>
@@ -840,7 +835,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1975</td>
 <td style="text-align: right;">95</td>
 <td style="text-align: right;">8.9</td>
-<td style="text-align: right;">24364</td>
+<td style="text-align: right;">24367</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">204</td>
@@ -848,7 +843,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1976</td>
 <td style="text-align: right;">80</td>
 <td style="text-align: right;">8.8</td>
-<td style="text-align: right;">20881</td>
+<td style="text-align: right;">20883</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">141</td>
@@ -856,7 +851,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1985</td>
 <td style="text-align: right;">101</td>
 <td style="text-align: right;">8.7</td>
-<td style="text-align: right;">16130</td>
+<td style="text-align: right;">16133</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">187</td>
@@ -864,7 +859,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1978</td>
 <td style="text-align: right;">83</td>
 <td style="text-align: right;">8.7</td>
-<td style="text-align: right;">17123</td>
+<td style="text-align: right;">17124</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">190</td>
@@ -872,7 +867,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1978</td>
 <td style="text-align: right;">95</td>
 <td style="text-align: right;">8.7</td>
-<td style="text-align: right;">11802</td>
+<td style="text-align: right;">11804</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">194</td>
@@ -888,7 +883,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1976</td>
 <td style="text-align: right;">94</td>
 <td style="text-align: right;">8.7</td>
-<td style="text-align: right;">20634</td>
+<td style="text-align: right;">20638</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">197</td>
@@ -896,7 +891,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1977</td>
 <td style="text-align: right;">97</td>
 <td style="text-align: right;">8.6</td>
-<td style="text-align: right;">18632</td>
+<td style="text-align: right;">18635</td>
 </tr>
 </tbody>
 </table>
@@ -921,7 +916,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">125</td>
 <td style="text-align: right;">8.3</td>
-<td style="text-align: right;">42975</td>
+<td style="text-align: right;">42982</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
@@ -929,7 +924,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2019</td>
 <td style="text-align: right;">132</td>
 <td style="text-align: right;">8.2</td>
-<td style="text-align: right;">54121</td>
+<td style="text-align: right;">54137</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">5</td>
@@ -937,7 +932,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2005</td>
 <td style="text-align: right;">108</td>
 <td style="text-align: right;">8.2</td>
-<td style="text-align: right;">91009</td>
+<td style="text-align: right;">91013</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8</td>
@@ -945,7 +940,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1996</td>
 <td style="text-align: right;">128</td>
 <td style="text-align: right;">8.1</td>
-<td style="text-align: right;">71691</td>
+<td style="text-align: right;">71694</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">11</td>
@@ -953,7 +948,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">1998</td>
 <td style="text-align: right;">107</td>
 <td style="text-align: right;">8.1</td>
-<td style="text-align: right;">27108</td>
+<td style="text-align: right;">27113</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
@@ -961,7 +956,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2014</td>
 <td style="text-align: right;">196</td>
 <td style="text-align: right;">8.0</td>
-<td style="text-align: right;">54601</td>
+<td style="text-align: right;">54613</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
@@ -969,7 +964,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2009</td>
 <td style="text-align: right;">128</td>
 <td style="text-align: right;">8.0</td>
-<td style="text-align: right;">34994</td>
+<td style="text-align: right;">35004</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6</td>
@@ -977,7 +972,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">188</td>
 <td style="text-align: right;">8.0</td>
-<td style="text-align: right;">26965</td>
+<td style="text-align: right;">26976</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">9</td>
@@ -985,7 +980,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2004</td>
 <td style="text-align: right;">127</td>
 <td style="text-align: right;">8.0</td>
-<td style="text-align: right;">66012</td>
+<td style="text-align: right;">66017</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">10</td>
@@ -993,7 +988,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2001</td>
 <td style="text-align: right;">110</td>
 <td style="text-align: right;">8.0</td>
-<td style="text-align: right;">38390</td>
+<td style="text-align: right;">38393</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">7</td>
@@ -1001,7 +996,7 @@ The following object is masked from 'package:dplyr':
 <td style="text-align: right;">2011</td>
 <td style="text-align: right;">157</td>
 <td style="text-align: right;">7.8</td>
-<td style="text-align: right;">49325</td>
+<td style="text-align: right;">49335</td>
 </tr>
 </tbody>
 </table>
